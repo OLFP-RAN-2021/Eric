@@ -96,6 +96,7 @@ main {
 main section {
     position: relative;
     margin-top: 3em;
+    padding-bottom: 1em;
     background-color: var(--bg-section);
     border-radius: var(--border-radius);
 
