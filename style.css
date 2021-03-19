@@ -3,6 +3,8 @@
 :root {
     /* --bg-transparent: rgba(153, 241, 249, 0.3); */
     --color-primary: rgba(0,0,0,.8);
+    --color-secondary: rgba(27, 127, 193, .8);
+
     --bg-address: rgba(125, 125, 125, 0.55);
     --bg-section: rgba(153, 241, 249, 0.3);
     --bg-titre: rgba(61, 185, 195, 0.3);
@@ -26,6 +28,7 @@ body {
     max-width     : 120ch;
     margin        : 0 auto;
     color: var(--color-primary);
+    scroll-behavior: smooth;
 }
 
 
@@ -44,6 +47,11 @@ h1 {
     text-transform: uppercase;
     align-self    : center;
 }
+.identite {
+    margin     : 0 auto;
+    font-size  : 2.2em;
+    font-weight: 900;
+}
 
 /* NAVIGATION */
 
@@ -58,20 +66,19 @@ nav a {
     font-weight: 600;
     text-decoration: none;
     text-transform: uppercase;
+    color: var(--color-secondary);
 }
 
 
-.references {
+/*  */
+
+/* .references {
     align-items    : center;
     display        : flex;
     justify-content: space-around;
-}
+} */
 
-.identite {
-    margin     : 0 auto;
-    font-size  : 2.2em;
-    font-weight: 900;
-}
+
 
 /* ADDRESS */
 address {
