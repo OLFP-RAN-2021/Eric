@@ -78,7 +78,12 @@ nav a {
     justify-content: space-around;
 } */
 
-
+.btn-top img{
+    width: 1.5em;
+    position: absolute;
+    right: 1em;
+    bottom: 1em;
+}
 
 /* ADDRESS */
 address {
@@ -107,12 +112,16 @@ main {
     gap: 1em;
 }
 
-.experiences {
+main section {
+    position: relative;
+}
+
+/* .experiences {
     grid-area: exp;
 }
 .formations {
     grid-area: form;
-}
+} */
 main section {
     margin-top: 1em;
     background-color: var(--bg-section);
