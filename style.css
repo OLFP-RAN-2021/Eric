@@ -2,6 +2,7 @@
 
 :root {
     /* --bg-transparent: rgba(153, 241, 249, 0.3); */
+    --color-primary: rgba(0,0,0,.8);
     --bg-address: rgba(125, 125, 125, 0.55);
     --bg-section: rgba(153, 241, 249, 0.3);
     --bg-titre: rgba(61, 185, 195, 0.3);
@@ -24,6 +25,7 @@ body {
     flex-direction: column;
     max-width     : 120ch;
     margin        : 0 auto;
+    color: var(--color-primary);
 }
 
 
@@ -32,9 +34,9 @@ header {
     display       : flex;
     flex-direction: column;
     /* height: 40vh; */
-    background: url('./img/bg-header.jpg') center;
+    /* background: url('./img/bg-header.jpg') center; */
     background-size: 100%;
-    color: var(--color-header);
+    /* color: var(--color-header); */
     padding: 1em;
 }
 
@@ -42,6 +44,22 @@ h1 {
     text-transform: uppercase;
     align-self    : center;
 }
+
+/* NAVIGATION */
+
+nav{
+    margin-top: 1em;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav a {
+    font-size: 1.2em;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
 
 .references {
     align-items    : center;
@@ -74,13 +92,12 @@ address {
     content: "tel: ";
 }
 
-/* main */
+
+/* MAIN */
 main {
-    display: grid;
-    grid-template-areas: 
-    "exp comp"
-    "form .";
-    grid-gap: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
 }
 
 .experiences {
