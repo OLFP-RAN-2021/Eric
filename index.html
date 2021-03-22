@@ -11,101 +11,123 @@
 </head>
 
 <body>
-    <header id="header">
-        <h1>Développeur informatique</h1>
-        <p class="identite">Eric Vercheval</p>        
-    </header>
-    <nav>
-        <a href="#experiences">experiences</a>
-        <a href="#formations">formations</a>
-        <a href="#competences">competences</a>
-        <a href="#contacts">contacts</a>
-    </nav>
-    <main>
-        
-        <section id="experiences" class="experiences">
-            <h2>Experiences professionnelles</h2>
-            <ul>
-                <li>
-                    <p class="dates">1995-1999</p>
-                    <p class="denomination">Crédit Mutuel Altkirch — Animateur d’agence</p>
-                    <p class="annotation">Technicien d'exploitation, guichetier. </p>
-                </li>
-                <li>
-                    <p class="dates">1981 - 1995</p>
-                    <p class="denomination">Crédit Mutuel St Antoine — Technicien d’exploitation</p>
-                    <p class="annotation">Comptabilité, recouvrement des créances, caisse principale, gestion parc
-                        informatique</p>
-                        
-                </li>
-            </ul>
-            <a href="#header" class="btn-top">
-                <img src="img/up-arrow-icon.png" alt="top page icon">
-            </a>
-            </section>
-            <section id="formations">
-                <h2>Formations</h2>
+    <div class="container">
+        <header id="header">
+            <h1>Développeur informatique</h1>
+            <p class="identite">Eric Vercheval</p>        
+        </header>
+        <nav>
+            <a href="#experiences">experiences</a>
+            <a href="#formations">formations</a>
+            <a href="#competences">competences</a>
+            <a href="#contacts">contacts</a>
+        </nav>
+        <main>
+            
+            <section id="experiences" class="experiences">
+                <h2>Experiences professionnelles</h2>
                 <ul>
                     <li>
-                        <p class="dates">AVRIL 2007 à JUIN 2008</p>
-                        <p class="denomination">A.F.P.A, Strasbourg — BAC +2 développeur informatique</p>
-                        
-                        <p class="annotation">Java, C#, PHP, Html, Javascript, SQL</p>
+                        <p class="dates">1995-1999</p>
+                        <p class="denomination">Crédit Mutuel Altkirch — Animateur d’agence</p>
+                        <p class="annotation">Technicien d'exploitation, guichetier. </p>
                     </li>
                     <li>
-                        <p class="dates">1978 à 1980</p>
-                        <p class="denomination">LEP Brustlein, Mulhouse — B.E.P. Banque et Bourse</p>
-                        <p class="annotation">Comptabilité, traitement de texte, exploitation bancaire</p>
+                        <p class="dates">1981 - 1995</p>
+                        <p class="denomination">Crédit Mutuel St Antoine — Technicien d’exploitation</p>
+                        <p class="annotation">Comptabilité, recouvrement des créances, caisse principale, gestion parc
+                            informatique</p>
+                            
                     </li>
                 </ul>
                 <a href="#header" class="btn-top">
                     <img src="img/up-arrow-icon.png" alt="top page icon">
                 </a>
-            </section>
-            <section id="competences">
-                <h2>Compétences</h2>
-                <div class="competences-container">
-                    <div>
-                        <img src="img/html-icon.png" alt="html-icon">
+                </section>
+                <section id="formations">
+                    <h2>Formations</h2>
+                    <ul>
+                        <li>
+                            <p class="dates">AVRIL 2007 à JUIN 2008</p>
+                            <p class="denomination">A.F.P.A, Strasbourg — BAC +2 développeur informatique</p>
+                            
+                            <p class="annotation">Java, C#, PHP, Html, Javascript, SQL</p>
+                        </li>
+                        <li>
+                            <p class="dates">1978 à 1980</p>
+                            <p class="denomination">LEP Brustlein, Mulhouse — B.E.P. Banque et Bourse</p>
+                            <p class="annotation">Comptabilité, traitement de texte, exploitation bancaire</p>
+                        </li>
+                    </ul>
+                    <a href="#header" class="btn-top">
+                        <img src="img/up-arrow-icon.png" alt="top page icon">
+                    </a>
+                </section>
+                <section id="competences">
+                    <h2>Compétences</h2>
+                    <div class="section-container competences-container">
+                        <div>
+                            <img src="img/html-icon.png" alt="html-icon">
+                        </div>
+                        <div>
+                            <img src="img/css-icon.png" alt="css-icon">
+                        </div>
+                        <div>
+                            <img src="img/javascript-icon.png" alt="javascript-icon">
+                        </div>
+                        <div>
+                            <img src="img/php-icon.png" alt="php-icon">
+                        </div>
+                        <div>
+                            <img src="img/mysql-icon.png" alt="mysql-icon">
+                        </div>
+                        
                     </div>
-                    <div>
-                        <img src="img/css-icon.png" alt="css-icon">
+                    <a href="#header" class="btn-top">
+                        <img src="img/up-arrow-icon.png" alt="top page icon">
+                    </a>
+                </section>
+                <section id="contacts">
+                    <h2>Contacts</h2>
+                    <div class="section-container contact-container">
+                        <form id="form-contact" action="">
+                            <input type="text" name="prenom" id="form-prenom" class="input50" placeholder="Prénom">
+                            <input type="text" name="nom" id="form-nom" class="input50" placeholder="Nom">
+                            <input type="email" name="email" id="form-email" class="input50" placeholder="Adresse mail">
+                            <input type="text" name="sujet" id="form-sujet" class="input50" placeholder="Sujet du message">
+                            <textarea name="" id="form-text" class="input100" placeholder="Votre message"></textarea>
+                            <input type="submit" id="form-button" class="input100" value="Envoyer">
+        
+                        </form>
+                        <address>
+                            <div class="adresse">
+                                <img src="/img/address-icon.png" alt="">
+                                <p class="rue">
+                                    55 rue des vosges
+                                    <br> 68110 ILLZACH
+                                </p>
+                            </div>
+                            <div class="adresse">
+                                <img src="/img/tel-icon.png" alt="">
+                                <p class="tel">06.03.82.61.62</p>
+                            </div>
+                            <div class="adresse">
+                                <img src="/img/email2-icon.png" alt="">
+                                <p class="email">eric.vercheval@hotmail.fr</p>
+                            </div>
+
+                        </address>
+
                     </div>
-                    <div>
-                        <img src="img/javascript-icon.png" alt="javascript-icon">
-                    </div>
-                    <div>
-                        <img src="img/php-icon.png" alt="php-icon">
-                    </div>
-                    <div>
-                        <img src="img/mysql-icon.png" alt="mysql-icon">
-                    </div>
-                    
-                </div>
-                <a href="#header" class="btn-top">
-                    <img src="img/up-arrow-icon.png" alt="top page icon">
-                </a>
-            </section>
-            <section id="contacts">
-                <h2>Contacts</h2>
-                <address>
-                    <p class="rue">55 rue des vosges</p>
-                    
-                    <p class="ville">68110 ILLZACH</p>
-                    <p class="tel">06.03.82.61.62</p>
-                    <p class="email">eric.vercheval@hotmail.fr</p>
-                    
-                </address>
-                <a href="#header" class="btn-top">
-                    <img src="img/up-arrow-icon.png" alt="top page icon">
-                </a>
-            </section>
+                    <a href="#header" class="btn-top">
+                        <img src="img/up-arrow-icon.png" alt="top page icon">
+                    </a>
+                </section>
         </main>
         <footer>
             
         </footer>
-
-
+    </div>
 
 </body>
 
