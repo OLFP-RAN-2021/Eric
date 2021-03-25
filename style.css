@@ -8,6 +8,7 @@
     --bg-address: rgba(125, 125, 125, 0.55);
     --bg-section: rgba(153, 241, 249, 0.3);
     --bg-titre: rgba(61, 185, 195, 0.3);
+
     --color-header: white;
     --timer-anim: 500ms;
     --competence-img-size: 1em;
@@ -74,11 +75,20 @@ nav a {
     color: var(--color-secondary);
 }
 
+
+.btn-top {
+    display: block;
+    width: 1.5em;
+    height: 1.5em;
+    position: sticky;
+    left: calc(100vw - 1.5em * 2) ;
+    top: calc(100vh - 1.5em * 2);
+    border-radius: 50%;
+    z-index: 10;
+}
 .btn-top img{
     width: 1.5em;
-    position: absolute;
-    right: 1em;
-    bottom: 1em;
+    /* cursor: pointer; */
 }
 
 /* MAIN */
@@ -97,6 +107,16 @@ main section {
 
 }
 
+/* main section::after{
+    content: "";
+    background-image: url("/img/up-arrow-icon.png");
+    background-size: 1.5em;
+    width: 1.5em;
+    height: 1.5em;
+    bottom: 1em;
+    right: 1em;
+    position: absolute;
+} */
 main section h2 {
     background-color: var(--bg-titre);
     text-align: center;
@@ -161,14 +181,26 @@ content:")";
 /* CONTACT formulaire */
 
 #form-contact {
-    display: grid ;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(5,1fr);
+
     grid-template-areas: 
     "prenom nom"
     "email sujet"
     "text text"
+    "text text"
     "button button";
     gap: 1em;
     width: 45%;
+    /* font-size: 1.2em; */
+}
+#form-contact > * {
+    /* padding: .5em; */
+    font-size: 1.2em;
+}
+#form-contact > *::placeholder{
+    color: var(--color-secondary);
 }
 #form-prenom {
     grid-area: prenom;
@@ -187,6 +219,7 @@ content:")";
 }
 #form-button {
     grid-area: button;
+    padding: .5em;
 }
 
 /* CONTACT address */
@@ -249,6 +282,7 @@ footer{
         "nom"
         "email"
         "sujet"
+        "text"
         "text"
         "button";
         width: 80%;
