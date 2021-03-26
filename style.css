@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
 
 :root {
-    /* --bg-transparent: rgba(153, 241, 249, 0.3); */
     --color-primary: rgba(0,0,0,.8);
     --color-secondary: rgba(27, 127, 193, .8);
 
@@ -41,17 +40,17 @@ header {
     font-family: 'Roboto', sans-serif;
     display       : flex;
     flex-direction: column;
-    /* height: 40vh; */
-    /* background: url('./img/bg-header.jpg') center; */
     background-size: 100%;
-    /* color: var(--color-header); */
     padding: 1em;
 }
 
 h1 {
     text-transform: uppercase;
     align-self    : center;
+    text-align: center;
+    margin-bottom: 1em;
 }
+
 .identite {
     margin     : 0 auto;
     font-size  : 2.2em;
@@ -88,7 +87,6 @@ nav a {
 }
 .btn-top img{
     width: 1.5em;
-    /* cursor: pointer; */
 }
 
 /* MAIN */
@@ -107,16 +105,6 @@ main section {
 
 }
 
-/* main section::after{
-    content: "";
-    background-image: url("/img/up-arrow-icon.png");
-    background-size: 1.5em;
-    width: 1.5em;
-    height: 1.5em;
-    bottom: 1em;
-    right: 1em;
-    position: absolute;
-} */
 main section h2 {
     background-color: var(--bg-titre);
     text-align: center;
@@ -127,7 +115,8 @@ main section h2 {
     border-top-left-radius: var(--border-radius);
     border-top-right-radius: var(--border-radius);
 }
-main section .section-container{
+/* main section .section-container{ */
+.section-container{
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -166,16 +155,16 @@ content:")";
 
 /* COMPETENCES */
 
-.competences-container{
-  
-}
 
 /* CONTACT */
 .contact-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     margin-top: 1rem;
+}
+.contact-container > *  {
+    width: 45%;
 }
 
 /* CONTACT formulaire */
@@ -192,12 +181,9 @@ content:")";
     "text text"
     "button button";
     gap: 1em;
-    width: 45%;
-    /* font-size: 1.2em; */
 }
 #form-contact > * {
-    /* padding: .5em; */
-    font-size: 1.2em;
+    padding-left: 1em;
 }
 #form-contact > *::placeholder{
     color: var(--color-secondary);
@@ -216,6 +202,7 @@ content:")";
 }
 #form-text {
     grid-area: text;
+    resize: none;
 }
 #form-button {
     grid-area: button;
@@ -226,13 +213,10 @@ content:")";
 address{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     height: inherit;
     gap: 1em;
-    /* height: 100%; */
-    /* width: 50%; */
-    width: 45%;
 }
 
 .adresse {
@@ -240,14 +224,11 @@ address{
     flex-direction: row;
     gap: 1rem;
     width: 100%;
-}
-.adresse .div{
-    display: flex;
-    
+    padding-left: calc(20%);
 }
 .adresse img {
-    width: 1rem;
-    height: 1rem;
+    width: 1em;
+    height: 1em;
 }
 
 
@@ -274,9 +255,27 @@ footer{
 
 /* MEDIA QUERIES */
 
-@media (max-width: 768px) {
-
+@media (max-width: 800px) {
+    .container{
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .references{
+        
+        flex-direction: column;
+    }
+    
+    .contact-container{
+        flex-direction: column;
+        gap: 3em;
+    }
+    .contact-container > * {
+        width: 80%;
+    }
     #form-contact{
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(7,1fr);
         grid-template-areas: 
         "prenom"
         "nom"
@@ -287,16 +286,15 @@ footer{
         "button";
         width: 80%;
     }
-}
-@media (max-width: 800px) {
-    .references{
-        
-        flex-direction: column;
+    #form-contact > * {
+        font-size: 1.2em;
+        padding: 1em .5em;
     }
-    
-    .contact-container{
-        flex-direction: column;
+    address{
+        font-size: 1.3em;
     }
-    
+    .adresse{
+        padding-left: 0;
+    }
 }
 
