@@ -110,7 +110,7 @@ main section h2 {
     text-align: center;
     text-transform: uppercase;
     padding: .5em 0;
-    margin-top: 0;
+    margin-bottom: 1em;
     font-style: italic;
     border-top-left-radius: var(--border-radius);
     border-top-right-radius: var(--border-radius);
@@ -123,9 +123,24 @@ main section h2 {
     margin-top: 1rem;
     flex-wrap: wrap;
     width: 100%;
+    gap: 1em;
 } 
-main section ul {
-    margin-left: 2em;
+
+.experience, .formation{
+    /* background:rgba(127, 127, 127, .2); */
+    border: 1px solid rgba(127, 127, 127, .2);
+    border-radius: .2em;
+    /* box-shadow: ; */
+    padding: .5em;
+    width: max(50%, 40ch);
+    width: 40ch;
+    display: flex;
+
+    flex-direction: column;
+    justify-content: ;
+    /* align-items: center; */
+    gap: 1em;
+    flex-wrap: wrap;
 }
 
 main .dates {
@@ -137,6 +152,7 @@ main .dates::after {
     content: " :";
 }
 
+main .lieu, 
 main .denomination {
     font-size: 1.1em;
     margin-bottom: 0;
@@ -158,10 +174,10 @@ content:")";
 
 /* CONTACT */
 .contact-container {
-    display: flex;
+    /* display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-top: 1rem;
+    margin-top: 1rem; */
 }
 .contact-container > *  {
     width: 45%;
