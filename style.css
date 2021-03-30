@@ -3,10 +3,11 @@
 :root {
     --color-primary: rgba(0,0,0,.8);
     --color-secondary: rgba(27, 127, 193, .8);
+    --color-white: white; /* a revoir */
 
     --bg-address: rgba(125, 125, 125, 0.55);
     --bg-section: rgba(153, 241, 249, 0.3);
-    --bg-titre: rgba(61, 185, 195, 0.3);
+    --bg-titre: rgba(61, 146, 195, 0.3);
 
     --color-header: white;
     --timer-anim: 500ms;
@@ -74,7 +75,7 @@ nav a {
     color: var(--color-secondary);
 }
 
-
+/* BOUTON RETOUR TOP */
 .btn-top {
     display: block;
     width: 1.5em;
@@ -98,7 +99,7 @@ main {
 
 main section {
     position: relative;
-    margin-top: 3em;
+    margin-top: 1em;
     padding-bottom: 1em;
     background-color: var(--bg-section);
     border-radius: var(--border-radius);
@@ -127,18 +128,19 @@ main section h2 {
 } 
 
 .experience, .formation{
-    /* background:rgba(127, 127, 127, .2); */
-    border: 1px solid rgba(127, 127, 127, .2);
+    /* border: 1px solid rgba(127, 127, 127, .2); */
+    /* border: 1px solid transparent; */
+    background-color: var(--color-white);
     border-radius: .2em;
-    /* box-shadow: ; */
-    padding: .5em;
-    width: max(50%, 40ch);
-    width: 40ch;
+    box-shadow: 0px 5px 5px 5px rgba(0,0,0,0.61)
+;
+    padding: 1em;
+    width: 45%;
     display: flex;
 
     flex-direction: column;
-    justify-content: ;
-    /* align-items: center; */
+    /* justify-content: ; */
+    align-items: center;
     gap: 1em;
     flex-wrap: wrap;
 }
@@ -271,7 +273,8 @@ footer{
 
 /* MEDIA QUERIES */
 
-@media (max-width: 800px) {
+/* @media (max-width: 800px) { */
+@media (max-width: 80ch) {
     .container{
         width: 100%;
         margin: 0;
@@ -281,11 +284,14 @@ footer{
         
         flex-direction: column;
     }
-    
+    .experiences-container ,
+    .formations-container ,
     .contact-container{
         flex-direction: column;
         gap: 3em;
     }
+    .experiences-container > * ,
+    .formations-container > * ,
     .contact-container > * {
         width: 80%;
     }
