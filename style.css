@@ -187,6 +187,10 @@ content:")";
 
 /* CONTACT formulaire */
 
+.error {
+    border-color: red;
+}
+
 #form-contact {
     display: grid;
     grid-template-columns: repeat(2,1fr);

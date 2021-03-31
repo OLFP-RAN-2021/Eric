@@ -12,63 +12,73 @@ button.addEventListener('click', e => {
 
 function validationForm() {
   
-  const champs = [
+  /* les champs a verifier */
+  const elements = [
     {
       name: "prenom",
-      empty: false
+      empty: true,
+      len:  4
     }, 
     {
       name:"nom",
-      empty: false
+      empty: true,
+      len: 5
     }, 
     {
       name: "email",
-      empty: false
+      empty: true,
+      email: true
     },
     {
       name: "sujet",
-      empty: false
+      empty: true,
+      len: 10
     },
     {
       name: "text",
-      empty: false
+      empty: true,
+      len: 40
     }
   ]
 
-  let nomChamp = {}
+  /* pour memorisation */
+  // let champs = {}
   
-  function formVide(el) {
-    console.log(el.value);
+  function formVide(value) {
+
+    return (value.trim() == "")
+
   }
   
-  champs.forEach(el => {
+  /* parcour des elements */
+  // for (let i = 0; i < elements.length; i++) {
+  for ( const el of elements) {
+    // const el = elements[i]
     const name = el.name
-    console.log(el.name)
-    console.log(`form-${name}`);
-    nomChamp[name] = document.getElementById(`form-${name}`)
+    // console.log(el.name)
+    // console.log(`form-${name}`);
+    const $el = document.getElementById(`form-${name}`)
     
-    // console.log(el.empty);
-    if(el.empty == false ) {
-      formVide(nomChamp[name])
-    }
-    console.log(`${name} : ${nomChamp[name].value}`)
-    
-    
-  })
-  
-    /* 
-  const prenom = document.getElementById('form-prenom')
-  const nom = document.getElementById('form-nom')
-  const email = document.getElementById('form-email')
-  const sujet = document.getElementById('form-sujet')
-  const text = document.getElementById('form-text')
+    /* enlever les classes */
+    $el.classList.remove('error')
 
-  console.log(`prenom : ${prenom.value}`);
-  console.log(`nom : ${nom.value}`);
-  console.log(`email : ${email.value}`);
-  console.log(`sujet : ${sujet.value}`);
-  console.log(`text : ${text.value}`); 
-*/
+    // recup de la valeur
+    let val = $el.value.trim()
+    
+    /* verif si vide ? */
+    if (el.empty && val == "") {
+      $el.classList.add('error')
+      continue
+    }
+  
+    /* verif longueur */
+    if(el.len !== undefined && val.length < el.len) {
+      $el.classList.add('error')
+      continue
+    }
+    console.log(`${name} : ${val}`)
+    
+  }
 
   
 }
