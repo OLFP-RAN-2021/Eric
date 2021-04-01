@@ -204,7 +204,8 @@ content:")";
     "button button";
     gap: 1em;
 }
-#form-contact > * {
+#form-contact input,
+#form-contact textarea {
     padding-left: 1em;
 }
 #form-contact > *::placeholder{
@@ -213,6 +214,7 @@ content:")";
 #form-prenom {
     grid-area: prenom;
 }
+
 #form-nom {
     grid-area: nom;
 }
@@ -312,7 +314,9 @@ footer{
         "button";
         width: 80%;
     }
-    #form-contact > * {
+
+    #form-contact input,
+    #form-contact textarea {
         font-size: 1.2em;
         padding: 1em .5em;
     }
