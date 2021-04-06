@@ -20,7 +20,7 @@ elements.forEach(element => {
   element.parentNode.insertBefore(span, element)
   /* placement element dans span */
   span.appendChild(element)
-  /* event */
+  /* Création évènement pour chaque élément (option?)*/
   element.addEventListener('blur', () => {
     validationElement(element)
   })
@@ -29,7 +29,7 @@ elements.forEach(element => {
 /* creation style et insertion DOM (head) */
 var style = document.createElement('style');
 style.innerHTML = `
-span::before { 
+form span[id^="span-form-"]::before { 
   content: var(--error-message);
   display: block;
   padding: .2em;
@@ -58,13 +58,17 @@ button.addEventListener('click', e => {
   validationForm()
 })
 
-/* validation du formulaire */
+/**
+ * Validation du formulaire avec parcours des champs.
+ * TODO : affichage d'un message si formulaire correct et envoyé.
+ */
 function validationForm() {
   
   let errors = 0
   /* parcour des elements */
   for ( const $el of elements) {
     
+    // validité du champ et comptage des erreurs
     if (!validationElement($el)) errors++ 
     
   }
@@ -75,31 +79,40 @@ function validationForm() {
   
 }
 
+/**
+ * Vérifier si une saisie est valide pour un champ passé en paramètre
+ * @param {HTMLElement} $el élément dont la value est à vérifier
+ * @returns {boolean} true si passe la validation sinon false
+ * 
+ */
 function validationElement($el) {
+  /* récupère le span */
   const $span = document.getElementById(`span-${$el.id}`)
     
   console.log(parseInt($el.dataset.length,10) )
   console.log(parseInt($el.dataset.length, 10) ? true : false);
   
-  /* enlever les classes */
+  /* enlever la classe */
   $el.classList.remove('form-error')
-  /* enlever les message */
+  /* vider le message */
   $span.style.setProperty("--error-message", `\"\"`)
   
-  // recup de la valeur sans espaces
+  // recupéré la valeur de l'input sans espaces
   let val = $el.value.trim()
-  
-  
-  /* verif longueur */
+    
+  /* verifier la longueur de la chaine */
   const length = parseInt($el.dataset.length, 10)
   if( length && parseInt( val.length, 10) < length) {
     /* cadre pour erreur */
     $el.classList.add('form-error')
     /* message d'erreur */
     $span.style.setProperty("--error-message",`\"Doit contenir ${length} caractères.\"`)
-    $el.setCustomValidity("erreur setCustomValidity")
+    // ne fonctionne pas ?
+    // $el.setCustomValidity("erreur setCustomValidity")
     return false
   }
+
+  // TODO : dataset alpha pour vérification saisie sans chiffre
 
   /* verif email */
   const email = $el.dataset.email
@@ -108,7 +121,8 @@ function validationElement($el) {
     // const mailformat = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
     // https://www.regextester.com/19
     // const mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
-
+    
+    // https://www.analyste-programmeur.com/javascript/les-expressions-regulieres/verifier-une-adresse-email-en-javascript
     const mailformat = /^[0-9a-z._-]+@{1}[0-9a-z.-]{2,}[.]{1}[a-z]{2,5}$/
     if (!val.match(mailformat)) {
       /* cadre pour erreur */
