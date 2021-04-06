@@ -88,11 +88,11 @@
                 <h2>Contacts</h2>
                 <div class="section-container contact-container">
                     <form id="form-contact" action="">
-                        <input type="text" name="prenom" id="form-prenom" class="input50" placeholder="Prénom">
-                        <input type="text" name="nom" id="form-nom" class="input50" placeholder="Nom">
-                        <input type="email" name="email" id="form-email" class="input50" placeholder="Adresse mail">
-                        <input type="text" name="sujet" id="form-sujet" class="input50" placeholder="Sujet du message">
-                        <textarea name="" id="form-text" class="input100" placeholder="Votre message"></textarea>
+                        <input type="text" name="prenom" id="form-prenom" class="input50" placeholder="Prénom" data-length="3">
+                        <input type="text" name="nom" id="form-nom" class="input50" placeholder="Nom" data-length="3">
+                        <input type="email" name="email" id="form-email" class="input50" placeholder="Adresse mail" data-email="true">
+                        <input type="text" name="sujet" id="form-sujet" class="input50" placeholder="Sujet du message" data-length="10">
+                        <textarea name="" id="form-text" class="input100" placeholder="Votre message" data-length="40"></textarea>
                         <input type="submit" id="form-button" class="input100" value="Envoyer">
                     </form>
                     <address>

@@ -175,12 +175,7 @@ content:")";
 
 
 /* CONTACT */
-.contact-container {
-    /* display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 1rem; */
-}
+
 .contact-container > *  {
     width: 45%;
 }
@@ -280,7 +275,7 @@ footer{
 /* MEDIA QUERIES */
 
 /* @media (max-width: 800px) { */
-@media (max-width: 80ch) {
+@media (max-width: 100ch) {
     .container{
         width: 100%;
         margin: 0;
@@ -325,6 +320,7 @@ footer{
     }
     .adresse{
         padding-left: 0;
+        max-width: 50%;
     }
 }
 
