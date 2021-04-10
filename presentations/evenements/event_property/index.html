@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dans les propriétés JS</title>
+    </head>
+    <body>
+        <h1>Propriétés JavaScript</h1>
+        <p>Un paragraphe</p>
+        <button id="boutonAlert">Cliquez moi !</button>
+        <div>
+            <p id="paragraphe" >Un paragraphe dans une div.</p>
+            <button id="boutonConsole" >Un bouton dans une div</button>
+        </div>
+        <script>
+            // On selectionne les éléments
+            const boutonAlert = document.querySelector("#boutonAlert")
+            const boutonConsole = document.querySelector("#boutonConsole")
+            const paragraphe = document.querySelector("#paragraphe")
+
+            // les fonctions
+            boutonAlert.onclick = function() {
+                alert('Bouton cliqué')
+            }
+            
+            paragraphe.onmouseover= function() {
+                this.style.background='yellow'
+            }
+            paragraphe.onmouseout= function() {
+                this.style.background='transparent'
+            }
+
+            function logConsole () {
+                console.log("click d'un bouton dans une div") 
+            }
+            boutonConsole.onclick = logConsole
+
+
+        </script>
+    </body>
+</html>
