@@ -107,6 +107,15 @@ Exemple : [event_remove](event_remove/index.html)
 <br>
 <br>
 
+## L'annulation des évènements suivants `stopImmediatePropagation()`
+
+Si plusieurs gestionnaires d'évènement sont attachés à un élément pour le même type d'évènement, ils sont appelés dans l'ordre dans lequel ils ont été ajoutés. Si ``stopImmediatePropagation()`` est appelé pendant un de ces appels, les gestionnaires restants ne sont pas invoqués.
+
+Exemple : [event_stop](event_stop/index.html)
+
+<br>
+<br>
+
 ## La propagation des évènements
 
 Les évènements sont propagés sur l'arborescence du `DOM`.

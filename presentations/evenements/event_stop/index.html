@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stopImmediatePropagation</title>
+    <style>
+        body{
+            font-size: 2rem;
+        }
+        div{
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: blue;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <title>stopImmediatePropagation</title>
+
+    <label for="checkbox">stopImmediatePropagation</label>
+    <input type="checkbox" name="checkbox" id="checkbox">
+    <div id="div">
+        <p>div à cliquer</p>
+    </div>
+
+    <script>
+        const checkbox = document.querySelector('#checkbox')
+        const div = document.querySelector('#div')
+
+        div.addEventListener('click', e => {
+            let commentaire = ""
+            if (checkbox.checked) {
+                e.stopImmediatePropagation()
+                div.style.backgroundColor = "red"
+                commentaire = "oups ;)"
+            } else {
+                div.style.backgroundColor = "green"
+            }
+            console.log(`1er évènement click ${commentaire}`);
+        })
+        div.addEventListener('click', e => {
+            div.style.fontSize = "2.5rem"
+            console.log('2ème évènement click');
+        })
+
+    </script>
+
+</body>
+</html>
