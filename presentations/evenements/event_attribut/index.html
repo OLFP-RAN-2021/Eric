@@ -12,7 +12,12 @@
         <button onclick="alert('Bouton cliqué')">Cliquez moi !</button>
         <div>
             <p onmouseover="this.style.background='yellow'" onmouseout="this.style.background='transparent'">Un paragraphe dans une div.</p>
-            <button onclick="console.log('click d\'un bouton dans une div')">Un bouton dans une div</button>
+            <button onclick="btnClick()">Un bouton dans une div</button>
         </div>
+        <script>
+            function btnClick() {
+                console.log('click d\'un bouton dans une div')    
+            }
+        </script>
     </body>
 </html>
