@@ -282,6 +282,17 @@ Rien de mieux qu'un exemple :
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Propagation</title>
+        <style>
+            #paragraphe,
+            #boutonConsole,
+            #div {
+                cursor: pointer;
+            }
+            #div {
+                background: rgb(174, 174, 236);
+                padding: 1rem;
+            }
+        </style>
     </head>
     <body>
         <h1>Propagation</h1>
@@ -330,3 +341,4 @@ Comme vu précédemment, lorsqu’un évènement se déclenche, celui-ci va navi
 Cette propagation va se faire selon deux phases :
 - une phase de capture.
 - une phase de bouillonnement.
+
