@@ -96,9 +96,9 @@ Exemple : [event_prevent](event_prevent/index.html)
 
 ## La suppression d'évènements `removeEventListener`
 
-La méthode ``removeEventListener()`` va permettre de supprimer un gestionnaire d’évènement déclaré avec addEventListener().
+La méthode ``removeEventListener()`` va permettre de supprimer un gestionnaire d’évènement déclaré avec ``addEventListener()``.
 
-ATTENTION : il faut préciser la fonction qui est rattachée à l'évènement.
+**ATTENTION : il faut préciser la fonction qui est rattachée à l'évènement.**
 
 Référence : [MDN removeEventListener](https://developer.mozilla.org/fr/docs/Web/API/EventTarget/removeEventListener)
 
@@ -122,13 +122,16 @@ Rien de mieux qu'un exemple : [event_propagation](event_propagation/index.html)
 Comme vu précédemment, lorsqu’un évènement se déclenche, celui-ci va naviguer à travers le ``DOM`` et passer à travers les différents gestionnaires d’évènement disposés dans le document.
 
 Cette propagation va se faire selon deux phases. 
-- une phase de capture.
-- une phase de bouillonnement.
+- une phase de bouillonnement (des enfants vers les parents).
+- une phase de capture (des parents vers les enfants).
 
 Le choix de la phase de propagation est déterminée par un troisième argument précisé à `addEventListener`. 
 
 Cet argument est un `booléen` :
-- ``false`` pour capture (par defaut).
-- ``true`` pour bouillonement.
+- ``false`` pour bouillonement (par defaut).
+- ``true`` pour capture.
+
+Référence : [MDN eventPhases](https://developer.mozilla.org/fr/docs/Web/API/Event/eventPhase)
 
 Exemple : [event_phases](event_phases/index.html)
+
