@@ -6,6 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Phases de propagation</title>
         <style>
+            div[id^="div"],
+            button {
+                cursor: pointer;
+            }
             div{padding: 1rem;}
             #div_rouge{background: red;}
             #div_vert{background: green;}
@@ -16,9 +20,11 @@
         <h1>Phases de propagation</h1>
         <p>Un paragraphe</p>
         <div id="div_rouge">
+            <p>Propagation par capture </p>
             <button id="bouton_rouge" >Bouton1 dans une div</button>
         </div>
         <div id="div_vert">
+            <p>Propagation par bouillonement</p>
             <button id="bouton_vert" >Bouton1 dans une div</button>
         </div>
         <script>
@@ -30,21 +36,20 @@
             
             // evenement sur les boutons
             function log_rouge (e) {
-                e.stopPropagation()
+                // e.stopPropagation()
                 const name = e.target.id
-                console.log(`click ${name} dans une div`)
+                console.log(`click ${name}`)
             }
             function log_vert (e) {
-                e.stopPropagation()
+                // e.stopPropagation()
                 const name = e.target.id
-                console.log(`click ${name} dans une div`) 
+                console.log(`click ${name}`) 
             }
             bouton_rouge.addEventListener('click', log_rouge)
-            bouton_vert.addEventListener('click', log_vert, false)
+            bouton_vert.addEventListener('click', log_vert)
             
             // evenement sur div
             const log_div = function(e) {
-                // console.log(`*******`, e);
                 const parentId = e.target.parentElement.id || e.target.id
                 console.log(`${parentId} a détecté un click sur ${e.target.id} `)
                 console.log(e.path)
