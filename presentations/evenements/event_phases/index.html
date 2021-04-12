@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Phases de propagation</title>
+        <style>
+            div{padding: 1rem;}
+            #div_rouge{background: red;}
+            #div_vert{background: green;}
+
+        </style>
+    </head>
+    <body>
+        <h1>Phases de propagation</h1>
+        <p>Un paragraphe</p>
+        <div id="div_rouge">
+            <button id="bouton_rouge" >Bouton1 dans une div</button>
+        </div>
+        <div id="div_vert">
+            <button id="bouton_vert" >Bouton1 dans une div</button>
+        </div>
+        <script>
+            // On selectionne les éléments
+            const div_rouge = document.querySelector("#div_rouge")
+            const div_vert = document.querySelector("#div_vert")
+            const bouton_rouge = document.querySelector("#bouton_rouge")
+            const bouton_vert = document.querySelector("#bouton_vert")
+            
+            // evenement sur les boutons
+            function log_rouge (e) {
+                e.stopPropagation()
+                const name = e.target.id
+                console.log(`click ${name} dans une div`)
+            }
+            function log_vert (e) {
+                e.stopPropagation()
+                const name = e.target.id
+                console.log(`click ${name} dans une div`) 
+            }
+            bouton_rouge.addEventListener('click', log_rouge)
+            bouton_vert.addEventListener('click', log_vert, false)
+            
+            // evenement sur div
+            const log_div = function(e) {
+                // console.log(`*******`, e);
+                const parentId = e.target.parentElement.id || e.target.id
+                console.log(`${parentId} a détecté un click sur ${e.target.id} `)
+                console.log(e.path)
+            }
+            // si 3eme parametre = 'false' par defaut alors detection après bouton
+            div_rouge.addEventListener('click', log_div, false)
+            // si 3eme parametre = 'true' alors detection avant bouton
+            div_vert.addEventListener('click', log_div, true)
+        </script>
+    </body>
+</html>
