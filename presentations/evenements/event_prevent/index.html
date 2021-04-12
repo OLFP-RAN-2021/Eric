@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>preventDefaut</title>
+</head>
+<body>
+    <title>preventDefault</title>
+
+    <a href="/uneAutrePage.html" id="lien" >un lien</a>
+    <!-- <form action="/page-inexistante" method="post"></form> -->
+    <form action="#" id="form">
+        <input type="text" name="text" id="text">
+        <input type="submit" id="input" value="Soumettre">
+
+    </form>
+    <script>
+        // on sélectionne les éléments
+        const lien = document.querySelector("#lien")
+        const form = document.querySelector("#form")
+
+        // création des listeners
+        lien.addEventListener('click', e => {
+            // bloque le lien, testez en commentant la ligne
+            e.preventDefault()
+            console.log('un click sur le lien');
+        })
+        form.addEventListener('submit', e => {
+            // bloque le formulaire, testez en commentant la ligne
+            e.preventDefault()
+            console.log('le formulaire tente de se soumettre');
+        })
+
+    </script>
+
+</body>
+</html>

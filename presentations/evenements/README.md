@@ -55,7 +55,7 @@ Exemple : [event_attribut](event_attribut/index.html)
 <br>
 <br>
 
-## Evènements dans les propriétés JS.
+## Evènements dans les propriétés ``JS``.
 
 Cette méthode consiste à utiliser une propriété d'un élément.
 
@@ -72,14 +72,24 @@ Exemple : [event_property](event_property/index.html)
 
 ## Evènements dans la méthode ``addEventListener()``
 
-Cette méthode consiste à attacher/écouter un évènement sur un élément.
+Cette méthode consiste à attacher une fonction pour écouter un évènement sur un élément.
 
 - `addEventListener` ajoute une fonction à la liste des gestionnaires d'évènements pour le type d'évènement spécifié.
+
 - Les cibles peuvent être `Window`, `Document` et bien sur `Element`.
 
 Référence : [MDN addEventListener](https://developer.mozilla.org/fr/docs/Web/API/EventTarget/addEventListener)
 
 Exemple : [event_add](event_add/index.html)
+
+<br>
+<br>
+
+## Bloquer le comportement par défaut d'un évènement.
+
+Afin de bloquer le comportement normal d'un évènement, nous utiliserons la fonction `preventDefault()` sur l'évènement.
+
+Exemple : [event_prevent](event_prevent/index.html)
 
 <br>
 <br>
