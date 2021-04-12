@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Propagation</title>
+    </head>
+    <body>
+        <h1>Propagation</h1>
+        <p>Un paragraphe</p>
+        <div id="div">
+            <p id="paragraphe" >Un paragraphe dans une div.</p>
+            <button id="boutonConsole" >Un bouton dans une div</button>
+        </div>
+        <script>
+            // On selectionne les éléments
+            const div = document.querySelector("#div")
+            const paragraphe = document.querySelector("#paragraphe")
+            const boutonConsole = document.querySelector("#boutonConsole")
+
+            // evenements sur paragraphe
+            paragraphe.addEventListener('mouseover', function() {
+                this.style.background='yellow'
+            }) 
+            paragraphe.addEventListener('mouseout', function() {
+                this.style.background='transparent'
+            }) 
+
+            // evenement sur bouton
+            function logConsole () {
+                console.log("click d'un bouton dans une div") 
+            }
+            boutonConsole.addEventListener('click', logConsole)
+
+            // evenement sur div
+            div.addEventListener('click', e => {
+                console.log("Ma div a détecté un click ")
+                console.log(e.path)
+            })
+        </script>
+    </body>
+</html>
