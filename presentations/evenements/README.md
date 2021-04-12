@@ -26,9 +26,9 @@
 
 Il existe 3 façons d'implémenter des évènements :
 
-- 2.1 Les attributs `HTML` (non recommandé).
-- 2.2 Les propriétés `JS`.
-- 2.3 La méthode `addEventListener()` (recommandé). 
+- Dans les attributs `HTML` (non recommandé).
+- Dans les propriétés `JS`.
+- Avec la méthode `addEventListener()` (recommandé). 
 
 <br>
 <br>
@@ -50,30 +50,7 @@ Ces attributs `HTML` de type évènements possèdent le plus souvent le nom de l
 
 Référence : [MDN GlobalEventHandlers](https://developer.mozilla.org/fr/docs/Web/API/GlobalEventHandlers)
 
-Exemple :
-
-```html
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Dans attributs HTML</title>
-    </head>
-    <body>
-        <h1>Attribut "HTML"</h1>
-        <p>Un paragraphe</p>
-
-        <button onclick="alert('Bouton cliqué')">Cliquez moi !</button>
-        <div>
-            <p onmouseover="this.style.background='yellow'" onmouseout="this.style.background='transparent'">Un paragraphe dans une div.</p>
-
-            <button onclick="console.log('click d\'un bouton dans une div')">Un bouton dans une div</button>
-        </div>
-    </body>
-</html>
-```
+Exemple : [event_attribut](event_attribut/index.html)
 
 <br>
 <br>
@@ -88,52 +65,7 @@ Cette méthode consiste à utiliser une propriété d'un élément.
 
 Référence : [MDN Building_blocks/Events](https://developer.mozilla.org/fr/docs/Learn/JavaScript/Building_blocks/Events)
 
-Exemple :
-
-```html
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Dans les propriétés JS</title>
-    </head>
-    <body>
-        <h1>Propriétés JavaScript</h1>
-        <p>Un paragraphe</p>
-        <button id="boutonAlert">Cliquez moi !</button>
-        <div>
-            <p id="paragraphe" >Un paragraphe dans une div.</p>
-            <button id="boutonConsole" >Un bouton dans une div</button>
-        </div>
-        <script>
-            // On selectionne les éléments
-            const boutonAlert = document.querySelector("#boutonAlert")
-            const boutonConsole = document.querySelector("#boutonConsole")
-            const paragraphe = document.querySelector("#paragraphe")
-
-            // les fonctions
-            boutonAlert.onclick = function() {
-                alert('Bouton cliqué')
-            }
-            
-            paragraphe.onmouseover= function() {
-                this.style.background='yellow'
-            }
-            paragraphe.onmouseout= function() {
-                this.style.background='transparent'
-            }
-
-            function logConsole () {
-                console.log("click d'un bouton dans une div") 
-            }
-            boutonConsole.onclick = logConsole
-
-        </script>
-    </body>
-</html>
-```
+Exemple : [event_property](event_property/index.html)
 
 <br>
 <br>
@@ -147,54 +79,7 @@ Cette méthode consiste à attacher/écouter un évènement sur un élément.
 
 Référence : [MDN addEventListener](https://developer.mozilla.org/fr/docs/Web/API/EventTarget/addEventListener)
 
-Exemple :
-
-```html
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title><address>EventListener</address></title>
-    </head>
-    <body>
-        <h1>addEventListener</h1>
-        <p>Un paragraphe</p>
-        <button id="boutonAlert">Cliquez moi !</button>
-        <div>
-            <p id="paragraphe" >Un paragraphe dans une div.</p>
-            <button id="boutonConsole" >Un bouton dans une div</button>
-        </div>
-        <script>
-            // On selectionne les éléments
-            const boutonAlert = document.querySelector("#boutonAlert")
-            const boutonConsole = document.querySelector("#boutonConsole")
-            const paragraphe = document.querySelector("#paragraphe")
-
-            // les fonctions
-            boutonAlert.addEventListener('click', function() {
-                alert('Bouton cliqué')
-            }) 
-            
-            paragraphe.addEventListener('mouseover', function() {
-                this.style.background='yellow'
-            }) 
-            paragraphe.addEventListener('mouseout', function() {
-                this.style.background='transparent'
-            }) 
-
-            // avec appel de fonction externe
-            function logConsole () {
-                console.log("click d'un bouton dans une div") 
-            }
-            boutonConsole.addEventListener('click', logConsole)
-
-
-        </script>
-    </body>
-</html>
-```
+Exemple : [event_add](event_add/index.html)
 
 <br>
 <br>
@@ -207,63 +92,7 @@ ATTENTION : il faut préciser la fonction qui est rattachée à l'évènement.
 
 Référence : [MDN removeEventListener](https://developer.mozilla.org/fr/docs/Web/API/EventTarget/removeEventListener)
 
-Exemple :
-
-````html
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Remove Listener</title>
-    </head>
-    <body>
-        <h1>removeEventListener</h1>
-        <p>Un paragraphe</p>
-        <button id="boutonAlert">Cliquez moi !</button>
-        <div>
-            <p id="paragraphe" >Un paragraphe dans une div.</p>
-            <button id="boutonConsole" >Un bouton dans une div</button>
-        </div>
-        <script>
-            // On selectionne les éléments
-            const boutonAlert = document.querySelector("#boutonAlert")
-            const boutonConsole = document.querySelector("#boutonConsole")
-            const paragraphe = document.querySelector("#paragraphe")
-
-            // les fonctions
-            boutonAlert.addEventListener('click', function() {
-                alert('Bouton cliqué')
-            }) 
-            
-            paragraphe.addEventListener('mouseover', function() {
-                this.style.background='yellow'
-            }) 
-            paragraphe.addEventListener('mouseout', function() {
-                this.style.background='transparent'
-            }) 
-
-            // avec appel de fonction externe
-            function logConsole () {
-                console.log("click d'un bouton dans une div") 
-            }
-            boutonConsole.addEventListener('click', logConsole)
-
-            // retrait d'évènement qui echoue
-            // fonction anonyme :(
-            boutonAlert.removeEventListener('click', function() {
-                alert('Bouton cliqué')
-            })
-            
-            // retrait d'évènement qui réussit ;)
-            boutonConsole.removeEventListener('click', logConsole)
-
-
-        </script>
-    </body>
-</html>
-````
+Exemple : [event_remove](event_remove/index.html)
 
 <br>
 <br>
@@ -272,73 +101,24 @@ Exemple :
 
 Les évènements sont propagés sur l'arborescence du `DOM`.
 
-Rien de mieux qu'un exemple :
+Rien de mieux qu'un exemple : [event_propagation](event_propagation/index.html)
 
-````html
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Propagation</title>
-        <style>
-            #paragraphe,
-            #boutonConsole,
-            #div {
-                cursor: pointer;
-            }
-            #div {
-                background: rgb(174, 174, 236);
-                padding: 1rem;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Propagation</h1>
-        <p>Un paragraphe</p>
-        <div id="div">
-            <p id="paragraphe" >Un paragraphe dans une div.</p>
-            <button id="boutonConsole" >Un bouton dans une div</button>
-        </div>
-        <script>
-            // On selectionne les éléments
-            const div = document.querySelector("#div")
-            const paragraphe = document.querySelector("#paragraphe")
-            const boutonConsole = document.querySelector("#boutonConsole")
-
-            // evenements sur paragraphe
-            paragraphe.addEventListener('mouseover', function() {
-                this.style.background='yellow'
-            }) 
-            paragraphe.addEventListener('mouseout', function() {
-                this.style.background='transparent'
-            }) 
-
-            // evenement sur bouton
-            function logConsole () {
-                console.log("click d'un bouton dans une div") 
-            }
-            boutonConsole.addEventListener('click', logConsole)
-
-            // evenement sur div
-            div.addEventListener('click', e => {
-                console.log("Ma div a détecté un click ")
-                console.log(e.path)
-            })
-        </script>
-    </body>
-</html>
-````
 
 <br>
 <br>
 
-## Les 2 phases de propagation
+## Les 2 phases de propagations
 
-Comme vu précédemment, lorsqu’un évènement se déclenche, celui-ci va naviguer à travers le DOM et passer à travers les différents gestionnaires d’évènement disposés dans le document.
+Comme vu précédemment, lorsqu’un évènement se déclenche, celui-ci va naviguer à travers le ``DOM`` et passer à travers les différents gestionnaires d’évènement disposés dans le document.
 
-Cette propagation va se faire selon deux phases :
+Cette propagation va se faire selon deux phases. 
 - une phase de capture.
 - une phase de bouillonnement.
 
+Le choix de la phase de propagation est déterminée par un troisième argument précisé à `addEventListener`. 
+
+Cet argument est un `booléen` :
+- ``false`` pour capture (par defaut).
+- ``true`` pour bouillonement.
+
+Exemple : [event_phases](event_phases/index.html)
