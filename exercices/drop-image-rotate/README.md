@@ -10,6 +10,8 @@ En cas d'enregistrement de l'image, sa taille doit toujours être la même (pré
 
 TODO :
 
+[ ] revoir calcul taille image dans canvas *(ratio prédéfini vs ratio image)*
+
 [ ] ajouter une animation CSS pour la rotation.
 
 [ ] créer 2 boutons pour les rotations vers la gauche ou vers la droite
