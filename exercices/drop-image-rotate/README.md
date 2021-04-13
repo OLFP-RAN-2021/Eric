@@ -4,7 +4,7 @@ Le but est de dropper une image et d'afficher celle-ci dans une taille définie.
 
 Il doit être possible d'effectuer une rotation par pas de 90 degrés sur cette image.
 
-En cas d'enregistrement de l'image, sa taille doit être doit toujours être de la même (prédéfinie).
+En cas d'enregistrement de l'image, sa taille doit toujours être la même (prédéfinie).
 
 --- 
 
