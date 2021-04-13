@@ -109,7 +109,7 @@ Exemple : [event_prevent](event_prevent/index.html)
 La méthode ``removeEventListener()`` va permettre de supprimer un gestionnaire d’évènement déclaré avec ``addEventListener()``.
 
 **ATTENTION :** 
-> **Il faut préciser une fonction externe nommé qui est rattachée à l'évènement.**
+> **Il faut préciser une fonction externe nommée qui est rattachée à l'évènement.**
 >````js
 >function mafunction(){}
 >element.addEventListener('click', mafunction)
@@ -159,13 +159,13 @@ Rien de mieux qu'un exemple : [event_propagation](event_propagation/index.html)
 
 ## Les 2 phases de propagations
 
-Comme vu précédemment, lorsqu’un évènement se déclenche, celui-ci va naviguer à travers le ``DOM`` et passer à travers les différents gestionnaires d’évènement disposés dans le document.
+Comme vu précédemment, lorsqu’un évènement se déclenche, celui-ci va naviguer à travers le ``DOM`` et passer à travers les différents gestionnaires d’évènements disposés dans le document.
 
 Cette propagation va se faire selon deux phases. 
 - une phase de bouillonnement (des enfants vers les parents).
 - une phase de capture (des parents vers les enfants).
 
-Le choix de la phase de propagation est déterminée par un troisième argument précisé à `addEventListener`. 
+Le choix de la phase de propagation est déterminé par un troisième argument précisé à `addEventListener`. 
 
 >`target.addEventListener(type, listener [, useCapture]);`
 
