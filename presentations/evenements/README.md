@@ -19,7 +19,6 @@
 <br>
 
 ---
-
 <br>
 
 ## Création d'un gestionnaire d'évènement
@@ -31,6 +30,8 @@ Il existe 3 façons d'implémenter des évènements :
 - Avec la méthode `addEventListener()` (recommandé). 
 
 <br>
+
+---
 <br>
 
 ## Evènements dans les attributs `HTML`
@@ -53,6 +54,8 @@ Référence : [MDN GlobalEventHandlers](https://developer.mozilla.org/fr/docs/We
 Exemple : [event_attribut](event_attribut/index.html)
 
 <br>
+
+---
 <br>
 
 ## Evènements dans les propriétés ``JS``.
@@ -68,6 +71,8 @@ Référence : [MDN Building_blocks/Events](https://developer.mozilla.org/fr/docs
 Exemple : [event_property](event_property/index.html)
 
 <br>
+
+---
 <br>
 
 ## Evènements dans la méthode ``addEventListener()``
@@ -83,6 +88,8 @@ Référence : [MDN addEventListener](https://developer.mozilla.org/fr/docs/Web/A
 Exemple : [event_add](event_add/index.html)
 
 <br>
+
+---
 <br>
 
 ## Bloquer le comportement par défaut d'un évènement.
@@ -93,6 +100,8 @@ Utilisé principalement pour les liens, boutons, validation de formulaires.
 Exemple : [event_prevent](event_prevent/index.html)
 
 <br>
+
+---
 <br>
 
 ## La suppression d'évènements `removeEventListener`
@@ -119,6 +128,8 @@ Référence : [MDN removeEventListener](https://developer.mozilla.org/fr/docs/We
 Exemple : [event_remove](event_remove/index.html)
 
 <br>
+
+---
 <br>
 
 ## L'annulation des évènements suivants `stopImmediatePropagation()`
@@ -130,6 +141,8 @@ Si ``stopImmediatePropagation()`` est appelé pendant un de ces appels, les gest
 Exemple : [event_stop](event_stop/index.html)
 
 <br>
+
+---
 <br>
 
 ## La propagation des évènements
@@ -140,6 +153,8 @@ Rien de mieux qu'un exemple : [event_propagation](event_propagation/index.html)
 
 
 <br>
+
+---
 <br>
 
 ## Les 2 phases de propagations
