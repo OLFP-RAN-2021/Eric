@@ -1,0 +1,72 @@
+:root{
+    --clr-test: red;
+    --drop-zone-height: 90vh;
+    --drop-zone-width: 90vw;
+    --drop-zone-border-size: 4px;
+    --drop-zone-clr: blue;
+    --drop-zone-bg-hover: rgb(170, 170, 235);
+    --drop-zone-bg-error: rgb(235, 126, 126);
+}
+
+*,
+*:after,
+*:before{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+
+html,
+body {
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#drop-zone {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 1rem;
+    align-items: center;
+    border: var(--drop-zone-border-size) dashed var(--drop-zone-clr);
+    height: var(--drop-zone-height);
+    position: relative;
+    width: var(--drop-zone-width);
+    font-size: 2rem;
+}
+#drop-zone.hover {
+    background-color: var(--drop-zone-bg-hover);
+}
+#drop-zone.error{
+    background-color: var(--drop-zone-bg-error);
+}
+
+#rotate-button{
+    padding: 1em;
+    color:green;
+}
+#rotate-button:disabled{
+    color: red;
+    /* background-color: red; */
+}
+#rotate-image {
+    width: 2rem;
+    /* color:chartreuse; */
+}
+#canvas-container{
+    flex-basis: 120%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+canvas{
+    max-height: 300px;
+    max-width: 300px;
+    border: 2px dashed black;
+}
