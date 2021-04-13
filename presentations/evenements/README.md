@@ -89,6 +89,7 @@ Exemple : [event_add](event_add/index.html)
 
 Afin de bloquer le comportement normal d'un évènement, nous utiliserons la fonction `preventDefault()` sur l'évènement.
 
+Utilisé principalement pour les liens, boutons, validation de formulaires.
 Exemple : [event_prevent](event_prevent/index.html)
 
 <br>
@@ -98,7 +99,20 @@ Exemple : [event_prevent](event_prevent/index.html)
 
 La méthode ``removeEventListener()`` va permettre de supprimer un gestionnaire d’évènement déclaré avec ``addEventListener()``.
 
-**ATTENTION : il faut préciser la fonction qui est rattachée à l'évènement.**
+**ATTENTION :** 
+> **Il faut préciser une fonction externe nommé qui est rattachée à l'évènement.**
+>````js
+>function mafunction(){}
+>element.addEventListener('click', mafunction)
+>// fonctionne correctement
+>element.removeEventListener('click', maFunction)
+>````
+> **Pas de fonction anonyme.**
+>````js
+>element.addEventListener('click', function(){})
+>// ne fonctionne pas !!!
+>element.removeEventListener('click', function(){})
+>````
 
 Référence : [MDN removeEventListener](https://developer.mozilla.org/fr/docs/Web/API/EventTarget/removeEventListener)
 
@@ -138,11 +152,15 @@ Cette propagation va se faire selon deux phases.
 
 Le choix de la phase de propagation est déterminée par un troisième argument précisé à `addEventListener`. 
 
+>`target.addEventListener(type, listener [, useCapture]);`
+
 Cet argument est un `booléen` :
 - ``false`` pour bouillonement (par defaut).
 - ``true`` pour capture.
 
-Référence : [MDN eventPhases](https://developer.mozilla.org/fr/docs/Web/API/Event/eventPhase)
+Référence : 
+- [MDN addEventListener](https://developer.mozilla.org/fr/docs/Web/API/EventTarget/addEventListener)
+- [MDN eventPhases](https://developer.mozilla.org/fr/docs/Web/API/Event/eventPhase)
 
 Exemple : [event_phases](event_phases/index.html)
 
