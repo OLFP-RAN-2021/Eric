@@ -10,7 +10,7 @@ En cas d'enregistrement de l'image, sa taille doit toujours être la même (pré
 
 TODO :
 
-[ ] revoir calcul taille image dans canvas *(ratio prédéfini vs ratio image)*
+[ ] revoir calcul taille image dans canvas *(imgRatio prédéfini vs imgRatio image)*
 
 [ ] ajouter une animation CSS pour la rotation.
 
