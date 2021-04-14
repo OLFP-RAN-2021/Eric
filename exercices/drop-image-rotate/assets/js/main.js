@@ -23,23 +23,95 @@ const testFile = file => {
  */
 const imageDraw = (angle = 0) => {
     // TODO : vérifier angle 0,90,180,270,360
-    // calcul pour taille
-    const ratio = img.width/img.height
-
-    console.log(`ratio: ${ratio}`);
-
-    // calcul du ratio pour orientation horizontale ou verticale
-    if(ratio >= 1) {
-        canvas.width = 300
-        canvas.height = canvas.width / ratio
-    } else {
-        canvas.height = 300
-        canvas.width = canvas.height * ratio
+    
+    // initialisation des marges
+    let margin = {
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0
     }
 
+    // ratio img pour orientation
+    // si ratio => 1 alors horizontal
+    // si ratio < 1 alors vertical
+    const imgRatio = img.width/img.height
+    console.log(`imgRatio: ${imgRatio}`);
+    
+    [canvas.width, canvas.height] = (imgRatio < 1) ?  [200, 300]:  [300, 200]
+    const canvasRatio = canvas.width/canvas.height
+    console.log(`canvasRatio: ${canvasRatio}`);
+  
+    // test taille imgInCanvas
+    //  a revoir
+    // const imgInCanvas = {
+    //     height: 0,
+    //     width: 0
+    // }
+    // imgInCanvas.height = img.height/canvas.height < 1 ? (canvas.height * (img.height/canvas.height)): (canvas.height / (img.height/canvas.height))
+    // imgInCanvas.width = img.width/canvas.width < 1 ? (canvas.width * (img.width/canvas.width)): (canvas.width / (img.width/canvas.width))
+    
+    
+    let marginOrientation = Math.sign((img.width/canvas.width) - (img.height/canvas.height))
+
+    // if(imgRatio < 1 ){
+    //     imgInCanvas.height = img.height / (img.width / canvas.width)
+    //     imgInCanvas.width = img.width / (img.height / canvas.height)
+    // } 
+
+    // console.table(imgInCanvas)
+
+    // tester si img avec marge
+    switch (marginOrientation) {
+        case 0:
+            // pas de marges ;)
+            console.log(` ${marginOrientation} : pas de marges`);
+            break;
+        case 1:
+            // marges verticales
+            console.log(`${marginOrientation} : marges verticales`);
+
+            console.log(`img.height/canvas.height : ${img.height/canvas.height}`);
+            
+            let imgHeight = img.height/canvas.height < 1 ? (canvas.height * (img.height/canvas.height)): (canvas.height / (img.height/canvas.height))
+            if(imgRatio < 1 ){
+                imgHeight = img.height / (img.width / canvas.width)
+            } 
+
+            margin.top = (canvas.height - imgHeight) /2
+            console.log(`margin.top : ${margin.top}`);
+            
+            margin.bottom = canvas.height - (margin.top + imgHeight)
+            console.log(`margin.bottom : ${margin.bottom}`);
+
+            break;
+        case -1:
+            // marges horizontales
+            console.log(`${marginOrientation} : marges horizontales`);
+
+            console.log(`img.width/canvas.width : ${img.width/canvas.width}`);
+            
+            let imgWidth = img.width/canvas.width < 1 ? (canvas.width * (img.width/canvas.width)): (canvas.width / (img.width/canvas.width))
+            if(imgRatio < 1 ){
+                imgWidth = img.width / (img.height / canvas.height)
+            } 
+
+            margin.left = (canvas.width - imgWidth) /2
+            console.log(`margin.left : ${margin.left}`);
+            
+            margin.right = canvas.width - (margin.left + imgWidth)
+            console.log(`margin.right : ${margin.right}`);
+            
+
+        break;
+        default:
+            break;
+    }
+    
+     
+
     // mémorise width et heigth du canvas
-    const w = canvas.width,
-        h = canvas.height
+    const[w, h] = [canvas.width, canvas.height]
 
     // echange width et height si position verticale
     if(angle == 90 || angle == 270) {
@@ -51,7 +123,8 @@ const imageDraw = (angle = 0) => {
     // centrer pour rotation du canvas
     context.translate(canvas.width / 2, canvas.height / 2);
     context.rotate(angle * Math.PI / 180);
-    context.drawImage(img,0,0,img.width, img.height, -w/2, -h/2, w, h)
+    // context.drawImage(img,0,0,img.width, img.height, -w/2, -h/2, w, h)
+    context.drawImage(img,0,0,img.width, img.height, -(w/2 - margin.left), -(h/2 - margin.top), (w-(margin.left + margin.right)), (h-(margin.top + margin.bottom)))
     context.restore();
     currentAngle = angle
 }
