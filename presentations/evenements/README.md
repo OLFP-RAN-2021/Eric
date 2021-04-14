@@ -83,7 +83,7 @@ Cette méthode consiste à attacher une fonction pour écouter un évènement su
 
 - Les cibles peuvent être `Window`, `Document` et bien sur `Element`.
 
-Référence : [MDN addEventListener](https://developer.mozilla.org/fr/docs/Web/API/EventTarget/addEventListener)
+Référence : [MDN addEventListener()](https://developer.mozilla.org/fr/docs/Web/API/EventTarget/addEventListener)
 
 Exemple : [event_add](event_add/index.html)
 
@@ -97,6 +97,9 @@ Exemple : [event_add](event_add/index.html)
 Afin de bloquer le comportement normal d'un évènement, nous utiliserons la fonction `preventDefault()` sur l'évènement.
 
 Utilisé principalement pour les liens, boutons, validation de formulaires.
+
+Référence : [MDN preventDefault()](https://developer.mozilla.org/fr/docs/Web/API/Event/preventDefault)
+
 Exemple : [event_prevent](event_prevent/index.html)
 
 <br>
@@ -123,7 +126,7 @@ La méthode ``removeEventListener()`` va permettre de supprimer un gestionnaire 
 >element.removeEventListener('click', function(){})
 >````
 
-Référence : [MDN removeEventListener](https://developer.mozilla.org/fr/docs/Web/API/EventTarget/removeEventListener)
+Référence : [MDN removeEventListener()](https://developer.mozilla.org/fr/docs/Web/API/EventTarget/removeEventListener)
 
 Exemple : [event_remove](event_remove/index.html)
 
@@ -134,9 +137,11 @@ Exemple : [event_remove](event_remove/index.html)
 
 ## L'annulation des évènements suivants `stopImmediatePropagation()`
 
-Lorsque plusieurs gestionnaires d'évènement sont attachés à un élément pour le même type d'évènement, ils sont appelés dans l'ordre dans lequel ils ont été ajoutés. 
+Lorsque plusieurs gestionnaires d'évènements sont attachés à un élément pour le même type d'évènement, ils sont appelés dans l'ordre dans lequel ils ont été ajoutés. 
 
 Si ``stopImmediatePropagation()`` est appelé pendant un de ces appels, les gestionnaires restants ne sont pas invoqués.
+
+Référence : [MDN stopImmediatePropagation()](https://developer.mozilla.org/fr/docs/Web/API/Event/stopImmediatePropagation)
 
 Exemple : [event_stop](event_stop/index.html)
 
@@ -165,7 +170,7 @@ Cette propagation va se faire selon deux phases.
 - une phase de bouillonnement (des enfants vers les parents).
 - une phase de capture (des parents vers les enfants).
 
-Le choix de la phase de propagation est déterminé par un troisième argument précisé à `addEventListener`. 
+Le choix de la phase de propagation est déterminé par un troisième argument précisé à `addEventListener()`. 
 
 >`target.addEventListener(type, listener [, useCapture]);`
 
@@ -173,8 +178,8 @@ Cet argument est un `booléen` :
 - ``false`` pour bouillonement (par defaut).
 - ``true`` pour capture.
 
-Référence : 
-- [MDN addEventListener](https://developer.mozilla.org/fr/docs/Web/API/EventTarget/addEventListener)
+Références : 
+- [MDN addEventListener()](https://developer.mozilla.org/fr/docs/Web/API/EventTarget/addEventListener)
 - [MDN eventPhases](https://developer.mozilla.org/fr/docs/Web/API/Event/eventPhase)
 
 Exemple : [event_phases](event_phases/index.html)
