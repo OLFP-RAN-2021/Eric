@@ -21,100 +21,57 @@ const testFile = file => {
  * 
  * 
  */
-const imageDraw = (angle = 0) => {
+const imageDraw = (angle = 0, size = {w: 450, h:300}) => {
     // TODO : vérifier angle 0,90,180,270,360
-    
-    // initialisation des marges
-    let margin = {
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0
-    }
 
     // ratio img pour orientation
     // si ratio => 1 alors horizontal
     // si ratio < 1 alors vertical
-    const imgRatio = img.width/img.height
+    const imgRatio = img.width / img.height
     console.log(`imgRatio: ${imgRatio}`);
+
+    // ;([canvas.width, canvas.height] = ((imgRatio < 1) ? [size.h, size.w] : [size.w, size.h]))
     
-    [canvas.width, canvas.height] = (imgRatio < 1) ?  [200, 300]:  [300, 200]
-    const canvasRatio = canvas.width/canvas.height
+    ;[canvas.width, canvas.height] = (imgRatio < 1) ? [size.h, size.w] : [size.w, size.h]
+    
+    // debugger
+    const canvasRatio = canvas.width / canvas.height
     console.log(`canvasRatio: ${canvasRatio}`);
-  
+
     // test taille imgInCanvas
-    //  a revoir
-    // const imgInCanvas = {
-    //     height: 0,
-    //     width: 0
-    // }
-    // imgInCanvas.height = img.height/canvas.height < 1 ? (canvas.height * (img.height/canvas.height)): (canvas.height / (img.height/canvas.height))
-    // imgInCanvas.width = img.width/canvas.width < 1 ? (canvas.width * (img.width/canvas.width)): (canvas.width / (img.width/canvas.width))
-    
-    
-    let marginOrientation = Math.sign((img.width/canvas.width) - (img.height/canvas.height))
+    const imgInCanvas = {
+        height: canvas.height,
+        width: canvas.width
+    }
 
-    // if(imgRatio < 1 ){
-    //     imgInCanvas.height = img.height / (img.width / canvas.width)
-    //     imgInCanvas.width = img.width / (img.height / canvas.height)
-    // } 
-
-    // console.table(imgInCanvas)
-
-    // tester si img avec marge
+    let marginOrientation = Math.sign((img.width / canvas.width) - (img.height / canvas.height))
     switch (marginOrientation) {
         case 0:
-            // pas de marges ;)
             console.log(` ${marginOrientation} : pas de marges`);
-            break;
+            break
         case 1:
-            // marges verticales
             console.log(`${marginOrientation} : marges verticales`);
-
-            console.log(`img.height/canvas.height : ${img.height/canvas.height}`);
-            
-            let imgHeight = img.height/canvas.height < 1 ? (canvas.height * (img.height/canvas.height)): (canvas.height / (img.height/canvas.height))
-            if(imgRatio < 1 ){
-                imgHeight = img.height / (img.width / canvas.width)
-            } 
-
-            margin.top = (canvas.height - imgHeight) /2
-            console.log(`margin.top : ${margin.top}`);
-            
-            margin.bottom = canvas.height - (margin.top + imgHeight)
-            console.log(`margin.bottom : ${margin.bottom}`);
-
-            break;
+            imgInCanvas.height = img.height / canvas.height < 1 ? (canvas.height * (img.height / canvas.height)) : (canvas.height / (img.height / canvas.height))
+            // if (imgRatio < 1) {
+            if (imgRatio < canvasRatio) {
+                imgInCanvas.height = img.height / (img.width / canvas.width)
+            }
+            break
         case -1:
-            // marges horizontales
             console.log(`${marginOrientation} : marges horizontales`);
-
-            console.log(`img.width/canvas.width : ${img.width/canvas.width}`);
-            
-            let imgWidth = img.width/canvas.width < 1 ? (canvas.width * (img.width/canvas.width)): (canvas.width / (img.width/canvas.width))
-            if(imgRatio < 1 ){
-                imgWidth = img.width / (img.height / canvas.height)
-            } 
-
-            margin.left = (canvas.width - imgWidth) /2
-            console.log(`margin.left : ${margin.left}`);
-            
-            margin.right = canvas.width - (margin.left + imgWidth)
-            console.log(`margin.right : ${margin.right}`);
-            
-
-        break;
-        default:
-            break;
+            imgInCanvas.width = img.width / canvas.width < 1 ? (canvas.width * (img.width / canvas.width)) : (canvas.width / (img.width / canvas.width))
+            // if (imgRatio < 1) {
+            if (imgRatio < canvasRatio) {
+                imgInCanvas.width = img.width / (img.height / canvas.height)
+            }
+            break
     }
-    
-     
 
-    // mémorise width et heigth du canvas
-    const[w, h] = [canvas.width, canvas.height]
+    // les données concernant la taille de l'image dessinée dans le canvas
+    console.table(imgInCanvas)
 
     // echange width et height si position verticale
-    if(angle == 90 || angle == 270) {
+    if (angle == 90 || angle == 270) {
         [canvas.width, canvas.height] = [canvas.height, canvas.width];
     }
 
@@ -124,15 +81,18 @@ const imageDraw = (angle = 0) => {
     context.translate(canvas.width / 2, canvas.height / 2);
     context.rotate(angle * Math.PI / 180);
     // context.drawImage(img,0,0,img.width, img.height, -w/2, -h/2, w, h)
-    context.drawImage(img,0,0,img.width, img.height, -(w/2 - margin.left), -(h/2 - margin.top), (w-(margin.left + margin.right)), (h-(margin.top + margin.bottom)))
+    context.drawImage(img,
+         0, 0, img.width, img.height,
+          -(imgInCanvas.width/2), -(imgInCanvas.height/2), imgInCanvas.width, imgInCanvas.height)
     context.restore();
     currentAngle = angle
+
 }
 
 // gestion évènement au chargement de l'image
 img.addEventListener('load', evt => {
     imageDraw(0)
-} )
+})
 
 /**
  * Charge l'image et l'affiche dans canvas
@@ -141,23 +101,23 @@ img.addEventListener('load', evt => {
 const chargeImage = (e) => {
     e.preventDefault()
     $dropZone.classList.remove('hover')
-    
+
     const file = e.dataTransfer.files[0]
-    
-    if( testFile(file)) {
+
+    if (testFile(file)) {
         img.src = URL.createObjectURL(file)
     } else {
         // TODO : msg d'erreur
         throw new Error("Erreur, pas d'image :(")
     }
-    $rotateButton.disabled = false   
+    $rotateButton.disabled = false
 }
 
 /* event pour dragover */
 $dropZone.addEventListener('dragover', e => {
     e.preventDefault()
 
-    if ( testFile(e.dataTransfer.items[0])) {
+    if (testFile(e.dataTransfer.items[0])) {
         $dropZone.classList.add('hover')
     } else {
         $dropZone.classList.add('error')
@@ -167,12 +127,12 @@ $dropZone.addEventListener('dragover', e => {
 /* event pour dragleave */
 $dropZone.addEventListener('dragleave', e => {
     // e.preventDefault()
-    $dropZone.classList.remove('hover','error')
+    $dropZone.classList.remove('hover', 'error')
 })
 
 /* event pour drop ou change */
-let actions = ['drop','change']
-actions.forEach( action => {
+let actions = ['drop', 'change']
+actions.forEach(action => {
     $dropZone.addEventListener(action, chargeImage)
 });
 
@@ -184,7 +144,7 @@ actions.forEach(action => {
 
 /* event pour bouton de rotation */
 $rotateButton.addEventListener('click', e => {
-    if(img.src == "") return
+    if (img.src == "") return
     currentAngle = (currentAngle + 90) % 360
     imageDraw(currentAngle)
 })
