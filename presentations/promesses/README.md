@@ -37,7 +37,7 @@ Références :
 ---
 <br>
 
-## Synthaxe et utilisation de base
+## Syntaxe et utilisation de base
 
 Nous utiliserons l'objet `Promise()` essentiellement afin de réaliser des traitements de façon asynchrone.
 
@@ -69,9 +69,9 @@ Autre exemple chargement d'une image : [Image](3_image/index.html)
 
 ## Promesses multiples
 
-Nous allons maintenant tenter d'effectuer plusieurs requettes asynchrones.
+Nous allons maintenant tenter d'effectuer plusieurs requêtes asynchrones.
 
-Exemple : [Requettes](4_requettes/index.html)
+Exemple : [requêtes](4_requetes/index.html)
 
 
 <br>
@@ -81,13 +81,13 @@ Exemple : [Requettes](4_requettes/index.html)
 
 ## ``Promise.all()``
 
-La méthode `all()` de `Promise` permet d'effectuer plusieurs requettes asynchrones.
+La méthode `all()` de `Promise` permet d'effectuer plusieurs requêtes asynchrones.
 
  - Si toutes les promesses de l'itérable (tableau) sont tenues, ``Promise.all`` est tenue.
 
  - La valeur de résolution est un tableau qui contient les valeurs de résolution respectives des promesses de l'itérable (dans le même ordre). 
  
- - Si l'argument utilisé est un tableau vide, la méthode résoud la promesse immédiatement et de façon synchrone.
+ - Si l'argument utilisé est un tableau vide, la méthode résout la promesse immédiatement et de façon synchrone.
 
 >**ATTENTION**
 >
@@ -109,7 +109,7 @@ Exemple :
 
 ## ``Promise.allSettled()``
 
-La méthode `allSettled()` de `Promise` permet d'effectuer plusieurs requettes asynchrones également.
+La méthode `allSettled()` de `Promise` permet d'effectuer plusieurs requêtes asynchrones également.
 
 Le gestionnaire passé à la promesse retournée recevra comme argument un tableau de valeur dont chacune est le résultat de chaque promesse de l'itérable initial.
 
