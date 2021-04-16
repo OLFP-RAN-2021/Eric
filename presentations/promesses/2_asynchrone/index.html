@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promesse asynchrone</title>
+    <style>
+        #result {
+            width: 80%;
+            padding: 1rem;
+            background-color: #dfd;
+        }
+    </style>
+</head>
+<h1>Promise : asynchrone</h1>
+Une promesse est effectuée de façon asynchrone
+
+<div id="result"></div>
+
+<body>
+
+    <script>
+        // creation et affichage d'un paragraphe dans le body
+        const afficheParagraphe = (text) => {
+            const p = document.createElement('p')
+            p.innerHTML = text
+            document.querySelector('#result').append(p)
+        }
+
+        // instancier une promesse
+        const maPromesse = new Promise((resolve, reject) => {
+            // attendre 2000ms avant de renvoyer la réponse
+            setTimeout(() => {
+                resolve('la promesse est tenue')
+                // reject("la promesse n'est pas tenue")
+            }, 3000)
+        })
+
+        // paragraphe avant la promesse
+        afficheParagraphe('avant la promesse')
+
+        // consommation de la promesse
+        maPromesse
+            .then((resp) => { afficheParagraphe(resp) })
+            .catch((err) => console.log(err))
+
+        // paragraphe après la promesse
+        afficheParagraphe(`<p>après la promesse</p>`)
+    </script>
+</body>
+
+</html>

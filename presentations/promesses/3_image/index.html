@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promesse image</title>
+    <style>
+        #result {
+            padding: 1rem;
+            background-color: #dfd;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Promise : Image</h1>
+
+    <div id="result"></div>
+    <script>
+
+        // creation et affichage d'un paragraphe dans le body
+        const afficheParagraphe = (text, error = false) => {
+            const p = document.createElement('p')
+            p.innerHTML = text
+            p.style.color = !error ? 'black' : 'red'
+            document.querySelector('#result').append(p)
+        }
+
+        // affichage d'une image passée en paramètre
+        const afficheImage = ($img) => {
+            document.querySelector('#result').append($img)
+        }
+
+        // fonction retournant une promesse
+        const maPromesse = (url) => {
+            return new Promise((resolve, reject) => {
+                // création d'une image
+                const image = document.createElement('img')
+                // si chargement ok => resolve()
+                image.onload = e => resolve(e.target)
+                // si erreur => reject
+                image.onerror = e => reject(e)
+                // affectation d'une url à l'image
+                image.src = url
+            })
+        }
+
+        // paragraphe avant la promesse
+        afficheParagraphe('avant la promesse')
+
+        // consommation de la promesse, voir inspecteur 'Network slow 3G'
+        maPromesse('https://via.placeholder.com/100x50.png')
+            .then((resp) => { afficheImage(resp) })
+            .catch((err) => {
+                console.log(`Erreur non trouvé : ${err.target.src}`);
+                afficheParagraphe(`image non trouvée : ${err.target.src}`, true)
+            })
+
+        // paragraphe après la demande de promesse
+        afficheParagraphe(`<p>après la promesse</p>`)
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>

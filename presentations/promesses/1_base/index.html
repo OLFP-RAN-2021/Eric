@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promesse : la base</title>
+</head>
+
+<body>
+    <h1>Promise : les bases</h1>
+    <div id="result"></div>
+    <script>
+        /* creation et affichage d'un paragraphe dans le body */
+        const afficheParagraphe = (text) => {
+            const p = document.createElement('p')
+            p.innerHTML = text
+            document.querySelector('#result').append(p)
+        }
+
+        // instancier une promesse
+        const maPromesse = new Promise((resolve, reject) => {
+            // du code à éxécuter
+            const ok = Math.random() > .5
+            if (ok) {
+                resolve('promesse tenue')
+            } else {
+                reject('promesse non tenue')
+            }
+        })
+
+        // les callbacks
+        const siReussie = resp => { alert(resp) }
+        const siEchoue = resp => { alert(resp) }
+
+        /* lancement de la promesse ("consommation" de la promesse) */
+        maPromesse.then(siReussie, siEchoue)
+
+        /* autre syntaxe pour consommation de promesse */
+maPromesse
+.then((resp) => {afficheParagraphe(resp)})
+.catch((err) => afficheParagraphe(err))
+
+    </script>
+
+
+
+
+
+
+</body>
+
+</html>

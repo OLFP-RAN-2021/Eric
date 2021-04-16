@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise Images</title>
+    <style>
+        #result {
+            padding: 1rem;
+            background-color: #dfd;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            width: 90%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Promise : Images</h1>
+
+    <div id="result"></div>
+    <script>
+        // affichage d'une image passée en paramètre
+        const afficheImage = ($img) => {
+            document.querySelector('#result').append($img)
+        }
+
+        // fonction retournant une promesse
+        const maPromesse = (url) => {
+            return new Promise((resolve, reject) => {
+                // création d'une image
+                const image = document.createElement('img')
+                // si chargement ok => resolve()
+                image.onload = e => resolve(e.target)
+                // si erreur => reject
+                image.onerror = e => reject(e)
+                // affectation d'une url à l'image
+                image.src = url
+            })
+        }
+
+        /* construit un tableau de promesses */
+        const mesPromesses = (data) => {
+            return data.map( d => {
+                // construit l'url
+                let url = `https://via.placeholder.com/${d}.png`
+                /* creation d'une erreur */
+                // if (d == '50x50') url = `https://via.placeholde.com/${d}.png`
+                // retourne une promesse
+                return maPromesse(url)
+            })
+        }
+        
+        /* taébleau de la taille des images pour construction des urls*/
+        const imagesData = [
+            '100x50',
+            '100x100',
+            '50x120',
+            '120x100',
+            '50x50',
+            '70x70',
+            '80x80',
+            '90x90',
+        ]
+
+
+        // consommation de la promesse, voir inspecteur 'Network slow 3G'
+        Promise.all(
+            /* le tableau des promesses */
+            mesPromesses(imagesData)
+        )
+            .then(
+                // parcours de la reponse qui est un tableau
+                (resp) => { resp.forEach(img => afficheImage(img)) }
+            )
+            /* si une seule erreur la promise échoue */
+            .catch((err) => {
+                console.log(`Erreur non trouvé : ${err.target.src}`);
+            })
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>
