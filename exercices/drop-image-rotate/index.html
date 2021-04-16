@@ -9,12 +9,16 @@
     <script src="assets/js/main.js" type="module"></script>
 </head>
 <body>
-    <div id="drop-zone">
-        <label for="file">Déposer une image</label>
-        <button id="rotate-button" disabled>
-            <img src="assets/img/rotate-button.svg" alt="rotation" id="rotate-image" >
-        </button>
-        <div id="canvas-container">
+    <div id="drop-zone" class="flex-container">
+        <div id="top-container" class="flex-container">
+            <label for="file">Déposer une image</label>
+            <div id="buttons-container" class="flex-container">
+                <button id="button-left"></button>
+                <button id="button-right"></button>
+            </div>
+
+        </div>
+        <div id="canvas-container" class="flex-container">
             <canvas></canvas>
         </div>
     </div>

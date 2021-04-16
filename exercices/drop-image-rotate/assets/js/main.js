@@ -1,9 +1,12 @@
 
 let currentAngle = 0
-const img = new Image
+const img = new Image()
 const canvas = document.querySelector("canvas")
 const context = canvas.getContext("2d");
 const $dropZone = document.querySelector('#drop-zone')
+
+const $buttonLeft = document.querySelector("#button-left")
+const $buttonRight = document.querySelector("#button-right")
 const $rotateButton = document.querySelector("#rotate-button")
 
 /**
@@ -21,7 +24,7 @@ const testFile = file => {
  * 
  * 
  */
-const imageDraw = (angle = 0, size = {w: 450, h:300}) => {
+const imageDraw = (angle = 0, size = { w: 300, h: 200 }) => {
     // TODO : vérifier angle 0,90,180,270,360
 
     // ratio img pour orientation
@@ -31,9 +34,11 @@ const imageDraw = (angle = 0, size = {w: 450, h:300}) => {
     console.log(`imgRatio: ${imgRatio}`);
 
     // ;([canvas.width, canvas.height] = ((imgRatio < 1) ? [size.h, size.w] : [size.w, size.h]))
-    
-    ;[canvas.width, canvas.height] = (imgRatio < 1) ? [size.h, size.w] : [size.w, size.h]
-    
+
+
+    /* inversion width, heigt selon le ratio de l'image (horizontale/verticale) */
+    [canvas.width, canvas.height] = (imgRatio < 1) ? [size.h, size.w] : [size.w, size.h]
+
     // debugger
     const canvasRatio = canvas.width / canvas.height
     console.log(`canvasRatio: ${canvasRatio}`);
@@ -53,7 +58,7 @@ const imageDraw = (angle = 0, size = {w: 450, h:300}) => {
             console.log(`${marginOrientation} : marges verticales`);
             imgInCanvas.height = img.height / canvas.height < 1 ? (canvas.height * (img.height / canvas.height)) : (canvas.height / (img.height / canvas.height))
             // if (imgRatio < 1) {
-            if (imgRatio < canvasRatio) {
+            if (imgRatio > canvasRatio) {
                 imgInCanvas.height = img.height / (img.width / canvas.width)
             }
             break
@@ -75,6 +80,10 @@ const imageDraw = (angle = 0, size = {w: 450, h:300}) => {
         [canvas.width, canvas.height] = [canvas.height, canvas.width];
     }
 
+    /* pour style */
+    canvas.style.maxHeight = `${canvas.height}px`
+    canvas.style.maxWidth = `${canvas.width}px`
+
     /* dessin proprement dit */
     context.save()
     // centrer pour rotation du canvas
@@ -82,8 +91,8 @@ const imageDraw = (angle = 0, size = {w: 450, h:300}) => {
     context.rotate(angle * Math.PI / 180);
     // context.drawImage(img,0,0,img.width, img.height, -w/2, -h/2, w, h)
     context.drawImage(img,
-         0, 0, img.width, img.height,
-          -(imgInCanvas.width/2), -(imgInCanvas.height/2), imgInCanvas.width, imgInCanvas.height)
+        0, 0, img.width, img.height,
+        -(imgInCanvas.width / 2), -(imgInCanvas.height / 2), imgInCanvas.width, imgInCanvas.height)
     context.restore();
     currentAngle = angle
 
@@ -110,9 +119,21 @@ const chargeImage = (e) => {
         // TODO : msg d'erreur
         throw new Error("Erreur, pas d'image :(")
     }
-    $rotateButton.disabled = false
+    $buttonLeft.disabled = false
+    $buttonRight.disabled = false
+    // $rotateButton.disabled = false
 }
-
+/* event pour fin animation */
+canvas.addEventListener("animationend", e => {
+    canvas.classList.remove('rotate-left', 'rotate-right')
+    /* 
+    TODO :  vérifier si bouton actif en cas de changement d'image
+            voir a déplacer dans imageDraw
+     */
+    $buttonLeft.disabled = false
+    $buttonRight.disabled = false
+    imageDraw(currentAngle)
+})
 /* event pour dragover */
 $dropZone.addEventListener('dragover', e => {
     e.preventDefault()
@@ -142,9 +163,23 @@ actions.forEach(action => {
     document.body.addEventListener(action, e => e.preventDefault())
 })
 
-/* event pour bouton de rotation */
-$rotateButton.addEventListener('click', e => {
+/* event pour boutons de rotation */
+const buttonClick = e => {
+    e.preventDefault()
     if (img.src == "") return
-    currentAngle = (currentAngle + 90) % 360
-    imageDraw(currentAngle)
-})
+    
+    if(e.currentTarget.id == "button-right") {
+        currentAngle = (currentAngle + 90) % 360
+        canvas.classList.add('rotate-right')
+    } else {
+        currentAngle = (currentAngle - 90) < 0 ? 270 : currentAngle - 90
+        canvas.classList.add('rotate-left')
+    }
+    /* disabled les buttons pendant l'animation */
+    $buttonLeft.disabled = true
+    $buttonRight.disabled = true
+}
+
+$buttonRight.addEventListener('click', buttonClick)
+$buttonLeft.addEventListener('click', buttonClick)
+
