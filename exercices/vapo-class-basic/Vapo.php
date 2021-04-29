@@ -7,11 +7,10 @@ use Tank\Tank;
 
 /**
  * TODO :
- * [ ] Gestion de la batterie
+ * [x] Gestion de la batterie
  * [ ] Ajout d'un ID?
  * [x] Verouillage appartenance tank (parent)
  * [ ] Ajout compteur de vapotage?
- * [ ] vapo ne gere pas le liquide?
  */
 class Vapo
 {
@@ -23,24 +22,6 @@ class Vapo
     {
         $this->setName($name);
         echo "Création d'un vapo : '{$this->getName()}'<br>";
-    }
-
-    public function addDevice(Tank|Battery $device)
-    {
-        $class = get_class($device);
-        echo $class;
-        switch ($class) {
-            case 'Tank':
-                echo 'ajout Tank';
-                break;
-            case 'Battery':
-                echo 'ajout Battery';
-                break;
-            
-            default:
-                echo "non ajout {$class}";
-                break;
-        }
     }
 
     public function addBattery(Battery $battery):bool
