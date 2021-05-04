@@ -1,11 +1,10 @@
 <?php
-    namespace App;
+    declare(strict_types=1);
+   
+    require "Modele\Bottles.php";
+    require "Modele\Bottle.php";
 
-    include_once "./Bottles.php";
-    include_once "./Bottle.php";
-
-use Bottle\Bottle;
-use Bottles\Bottles as Bottles;
+    use Modele\Bottles\Bottles;
     
 
 ?>
@@ -22,24 +21,10 @@ use Bottles\Bottles as Bottles;
 
 
 <?php
-    $testBottles = [
-        [
-            'name'=>'Chardonney',
-            'millesime' => '1984'
-        ],
-        [
-            'name'=>'Bordeau',
-            'millesime' => '2018'
-        ],
-        [
-            'name'=>'Bourgogne',
-            'millesime' => '2020'
-        ]
-    ];
 
-    $bottles = Bottles::getInstance();
+    $bottles = new Bottles("mes bouteilles");
 
-    echo "id : {$bottles->getID()}<br>";
+    echo "Bottles id : {$bottles->getId()}<br>";
 
     $bottles->toHTML();
     
@@ -47,7 +32,10 @@ use Bottles\Bottles as Bottles;
     // $bottles->saveJSON();
     $bottles->toHTML();
 
-
+    // classement alpha
+    echo "<pre>";
+    print_r($bottles->sortByName());
+    echo "</pre>";
 
 ?>
     
