@@ -1,8 +1,8 @@
 <?php
 
-namespace Battery;
+namespace App;
 
-use Vapo\Vapo;
+use App\Vapo;
 
 class Battery 
 {

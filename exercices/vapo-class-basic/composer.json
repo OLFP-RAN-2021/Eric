@@ -1,0 +1,13 @@
+{
+    "name": "stagiaire/vapo-class-basic",
+    "authors": [
+        {
+            "name": "Eric",
+            "email": "eric.vercheval@hotmail.fr"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {"App\\": "app/"}
+    }    
+}

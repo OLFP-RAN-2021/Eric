@@ -1,14 +1,15 @@
 <?php
     namespace App;
 
-    // les includes
-    include_once "./Tank.php";
-    include_once "./Battery.php";
-    include_once "./Vapo.php";
+    require __DIR__ . '/vendor/autoload.php';
     // les uses
-    use Battery\Battery;
-    use Tank\Tank as Tank;
-    use Vapo\Vapo as Vapo;
+    use App\Vapo;
+    use App\Tank;
+    use App\Battery;
+    use App\Exceptions\VapoException;
+    use App\Exceptions\TankException;
+    use App\Exceptions\BatteryException;
+
 
 ?>
 
@@ -24,21 +25,42 @@
 
 <?php
 
+
+try{
     $maVapo = new Vapo("    ma nouvelle vapoteuse du futur    ");
-    $tank = new Tank("", 100);
+    $tank100 = new Tank("tank100", 100);
+    $tank50 = new Tank("tank50", 50);
     $battery = new Battery("Battery100", 100);
-    $tank->changeCapacity(1);
-    $maVapo->vaping(1);
-    $maVapo->addTank($tank);
-    $tank->changeCapacity(10);
+    $tank100->changeCapacity(100);
+    // teste démontage tank inexistant
+    // $maVapo->removeTank();
+    $maVapo->addTank($tank100);
+    // echo "2eme tank pour erreur : <br>";
+    // $maVapo->addTank($tank50);
+
+    $tank100->changeCapacity(-10);
+    // $maVapo->vaping(1); // test vaping sans battery
     $maVapo->addBattery($battery);
-
-    $maVapo->vaping(1);
-
+    // test vap battery vide
+    // $maVapo->vaping(1);
+    
     $battery->changeCapacity(20);
     $maVapo->vaping(15);
     
+    // test battery error
     $maVapo->vaping(10);
+    
+} catch (VapoException $error) {
+    echo "<br>Erreur Vapo : <br>{$error->getMessage()}<br>";
+} catch (TankException $error) {
+    echo "<br>Erreur Tank : <br>{$error->getMessage()}<br>";
+} catch (BatteryException $error) {
+    echo "<br>Erreur Battery : <br>{$error->getMessage()}<br>";
+} catch (\Exception $error) {
+    echo "<br>{$error->getMessage()}<br>";
+}
+
+
 
 ?>
     

@@ -1,9 +1,12 @@
 <?php
 
-namespace Vapo;
+namespace App;
 
-use Battery\Battery;
-use Tank\Tank;
+use App\Battery;
+use App\Tank;
+use App\Exceptions\VapoException;
+use App\Exceptions\TankException;
+use App\Exceptions\BatteryException;
 
 /**
  * TODO :
@@ -40,6 +43,7 @@ class Vapo
             $this->battery = null;
             return true;
         }
+        
         return false;
     }
 
@@ -55,16 +59,22 @@ class Vapo
   
     public function addTank(Tank $tank): bool
     {
+        if(!is_null($this->tank)) {
+            throw new VapoException("Error montage {$tank->getName()} impossible tank déjà existant");
+        }
         if ($tank->mount($this)) {
             $this->tank = $tank;
             return true;
         }
-        echo "IMPOSSIBLE ajout de '{$tank->getName()}' à '{$this->getName()}'<br>";
-        return false;
+        
     }
 
     public function removeTank(): bool
     {
+        if(is_null($this->tank)) {
+            throw new VapoException("Pas de tank à démonter");
+        }
+        
         if ($this->tank->dismount($this)) {
             $this->tank = null;
             return true;
@@ -107,18 +117,19 @@ class Vapo
     public function canVape(int $time): bool 
     {
         if(!$this->hasTank() || !$this->hasBattery()) {
-            echo "<br>Vaping impossible '{$this->getName()}' => '{$time}s'<br>";
-            if(!$this->hasTank()) {echo "---pas de tank<br>";
+            if(!$this->hasTank()) {
+                throw new TankException("Error vaping impossible sans tank");
             }
-            if(!$this->hasBattery()) {echo "---pas de battery<br>";
+            if(!$this->hasBattery()) {
+                throw new BatteryException("Error vaping impossible sans batterie");
             }
             return false;     
         }
-        if ($this->tank->getCapacity() < $time || $this->battery->getCapacity() < $time) {
-            echo "<br>Vaping impossible '{$this->getName()}' => '{$time}s'<br>";
-            echo "---'{$this->tank->getName()}' capacité '{$this->tank->getCapacity()}'<br>";
-            echo "---'{$this->battery->getName()}' capacité '{$this->battery->getCapacity()}'<br>";
-            return false;
+        if ($this->tank->getCapacity() < $time) {
+            throw new TankException("Error Tank capacité insuffisante");           
+        }
+        if ($this->battery->getCapacity() < $time) {
+            throw new BatteryException("Error Battery capacité insuffisante");           
         }
         return true;
     }
@@ -126,7 +137,7 @@ class Vapo
     {
         
         if(!$this->canVape($time)) {
-            return false;
+            throw new VapoException('OUPS Vapotage impossible');
         }
         echo "<br>Vaping '{$this->getName()}' => '{$time}s'<br>";
         $this->tank->changeCapacity(-$time);

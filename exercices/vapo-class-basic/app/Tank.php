@@ -1,8 +1,11 @@
 <?php
 
-namespace Tank;
+namespace App;
 
-use Vapo\Vapo;
+use App\Vapo;
+use App\Exceptions\VapoException;
+use App\Exceptions\BatteryException;
+use App\Exceptions\TankException;
 
 class Tank 
 {
@@ -31,13 +34,13 @@ class Tank
     
     public function mount(Vapo $vapo): bool
     {
-        if (!$this->isMount()) {
-
-            echo "Montage '{$this->getName()}' sur '{$vapo->getName()}' <br>";
-            $this->vapo = $vapo;
-            return true;
+        if($this->isMount()) {
+            throw new TankException("Montage Tank impossible, déjà utilisé");
         }
-        return false;
+        echo $this->isMount();
+        echo "Montage '{$this->getName()}' sur '{$vapo->getName()}' <br>";
+        $this->vapo = $vapo;
+        return true;
     }
 
     public function dismount(Vapo $vapo): bool
@@ -49,25 +52,17 @@ class Tank
         return false;
     }
 
-    private function capacityLimit($newCapacity): int
+    public function changeCapacity(int $content = 1): ?int
     {
-        if ($newCapacity < 0)
+        $newCapacity = $this->capacity + $content;
+        if ( $newCapacity < 0)
         {
-            return 0;
+            throw new TankException("Erreur Réservoir vide");
         }
-        if ($newCapacity > $this->capacityMax)
-        {
-            $tropPlein = $newCapacity - $this->capacityMax;
-            echo "trop plein {$tropPlein}";
-            return $this->capacityMax;
+        if($newCapacity > $this->capacityMax) {
+            throw new TankException("Erreur capacité max du réservoir atteinte");
         }
-        return $newCapacity;
-    }
-
-    public function changeCapacity(int $content = 1): int
-    {
-        echo "Nouvelle capacité '{$this->getName()}' '{$this->capacityLimit($this->capacity + $content)}/{$this->getCapacityMax()}'<br>";
-        return $this->capacity = $this->capacityLimit($this->capacity + $content);
+        return $this->capacity = $newCapacity;
 
     }
 
@@ -81,9 +76,9 @@ class Tank
         return $this->capacityMax;
     }
     
-    public function isMount():? int
+    public function isMount():bool
     {
-        return $this->vapo ? true : false;
+        return !is_null($this->vapo);
     }
 
 
