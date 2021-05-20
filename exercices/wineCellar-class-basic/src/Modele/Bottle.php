@@ -1,6 +1,6 @@
 <?php
 
-namespace Modele\Bottle;
+namespace App\Modele;
 
 class Bottle {
     

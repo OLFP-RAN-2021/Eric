@@ -1,0 +1,16 @@
+{
+    "name": "stagiaire/wine-cellar-class-basic",
+    "authors": [
+        {
+            "name": "Eric",
+            "email": "eric.vercheval@hotmail.fr"
+        }
+    ],
+    "require": {
+        "symfony/var-dumper": "^5.2"
+    },
+    "autoload": {
+        "psr-4": {"App\\": "src/"}
+    }
+
+}
