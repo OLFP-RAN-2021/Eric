@@ -1,5 +1,13 @@
-RewriteEngine on
-RewriteBase /exo-class/
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.+)$ index.php?uri=$1 [QSA,L]
+#RewriteEngine on
+#RewriteBase /app/
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^(.+)$ app/index.php?uri=$1 [QSA,L]
+
+#RewriteEngine On
+#RewriteBase /vapo-class-basic/
+#
+#RewriteCond %{THE_REQUEST} /app/([^\s?]*) [NC]
+#RewriteRule ^ %1 [L,NE,R=302]
+#
+#RewriteRule ^((?!app/).*)$ app/$1 [L,NC]

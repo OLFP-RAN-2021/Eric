@@ -1,9 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
-use App\Battery;
-use App\Tank;
+use App\Model\Battery;
+use App\Model\Tank;
 use App\Exceptions\VapoException;
 use App\Exceptions\TankException;
 use App\Exceptions\BatteryException;
