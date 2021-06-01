@@ -20,7 +20,9 @@
             <label for="emailDest">Email destinataire</label>
             <input type="email" name="emailDest" id="emailDest" placeholder="son.email@mail.fr" class="border-radius">
         </div>
-        <input type="file" name="files" id="files">
+        <div id="drop-zone">
+            <!-- <input type="file" name="files" id="files"> -->
+        </div>
         <button id="btnSend" class="border-radius">Envoyer</button>
     </form>
 </body>
