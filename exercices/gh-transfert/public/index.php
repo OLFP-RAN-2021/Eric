@@ -1,6 +1,5 @@
 <?php
 
-namespace App;
 
 $loader = require '../vendor/autoload.php';
 
