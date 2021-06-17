@@ -14,6 +14,21 @@ class FileUtilities
         throw new \Exception("Création répertoire impossible");
     }
 
+    public function filesChecker(array $files): array
+    {
+        $error = 0;
+        $size = 0;
+        foreach ($files as  $file) {
+            $error += $file['error'];
+            $size += $file['size'];
+        }
+        return [
+            'nbfiles' => count($files),
+            'error' => $error,
+            'size' => $size
+        ];
+    }
+
     public function filesReorder(string $inputName): array
     {
         $files = [];
@@ -34,9 +49,8 @@ class FileUtilities
     {
         foreach ($files as $file) {
 
-            $DS = DIRECTORY_SEPARATOR;
             if (is_uploaded_file($file['tmp_name'])) {
-                move_uploaded_file($file['tmp_name'], '../upload/' . $directoryTmp . $DS . $file['name']);
+                move_uploaded_file($file['tmp_name'], '../upload/' . $directoryTmp . "/" . $file['name']);
                 // echo "fichier {$file['name']} enregistré.<br>";
             }
         }

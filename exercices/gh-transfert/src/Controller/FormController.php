@@ -31,23 +31,25 @@ class FormController extends AbstractController
 
             $files = $filesUtilities->filesReorder('files');
             $nbFiles =  count($files);
-            $directoryTmp = $filesUtilities->createDirectory($dir);
-            $filesUtilities->saveFiles($directoryTmp, $files);
+            $check = $filesUtilities->filesChecker($files);
+            if ($check['error'] == 0 && $check['size'] < 1000) {
+                $directoryTmp = $filesUtilities->createDirectory($dir);
+                $filesUtilities->saveFiles($directoryTmp, $files);
+                $mailTemplate = new SenderMailTemplate();
+                $mailTemplate->addParams('message', $_POST['message']);
+                $mailTemplate->addParams('directory', $directoryTmp);
+                $mail->setEmailBody($mailTemplate->render());
 
-            $mailTemplate = new SenderMailTemplate();
-            $mailTemplate->addParams('message', $_POST['message']);
-            $mailTemplate->addParams('directory', $directoryTmp);
-            $mail->setEmailBody($mailTemplate->render());
-
-            $mail->setSenderName($_POST['emailSender']);
-            $mail->setDestinationName($_POST['emailDest']);
-            $mail->setSenderMessage($_POST['message']);
-
-
-            if ($mail->sendEmail() === 0) {
-                $content .= "message non envoyé";
+                $mail->setSenderName($_POST['emailSender']);
+                $mail->setDestinationName($_POST['emailDest']);
+                $mail->setSenderMessage($_POST['message']);
+                if ($mail->sendEmail() === 0) {
+                    $content .= "message non envoyé";
+                }
+                $content .= "{$nbFiles},{$directoryTmp}";
+            } else {
+                $content = json_encode($check);
             }
-            $content .= "{$nbFiles},{$directoryTmp}";
         }
         $response->setContent($content);
         return $response;
