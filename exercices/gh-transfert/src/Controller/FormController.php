@@ -16,25 +16,26 @@ class FormController extends AbstractController
 {
 
     #[Route('/form', name: 'Form')]
-    public function validate()
+    public function validate(): Response
     {
         $files = [];
         $directoryTmp = "";
-        $response = new Response();
-        $content = "";
+        $response = new JsonResponse();
+        $responseArray = [];
         $filesUtilities = new FileUtilities();
         $mail = new EMail();
-
+        $maxSize = 1024 * 3;
 
         $dir =  uniqid('rep');
         if (!empty($_POST)) {
 
             $files = $filesUtilities->filesReorder('files');
-            $nbFiles =  count($files);
+            // $nbFiles =  count($files);
             $check = $filesUtilities->filesChecker($files);
-            if ($check['error'] == 0 && $check['size'] < 1000) {
+            if ($check['error'] == 0 && $check['size'] < $maxSize) {
                 $directoryTmp = $filesUtilities->createDirectory($dir);
                 $filesUtilities->saveFiles($directoryTmp, $files);
+
                 $mailTemplate = new SenderMailTemplate();
                 $mailTemplate->addParams('message', $_POST['message']);
                 $mailTemplate->addParams('directory', $directoryTmp);
@@ -44,20 +45,23 @@ class FormController extends AbstractController
                 $mail->setDestinationName($_POST['emailDest']);
                 $mail->setSenderMessage($_POST['message']);
                 if ($mail->sendEmail() === 0) {
-                    $content .= "message non envoyé";
+                    $responseArray = array_merge($responseArray, ['email' => "erreur envoi message"]);
                 }
-                $content .= "{$nbFiles},{$directoryTmp}";
+                $responseArray = array_merge(
+                    $responseArray,
+                    ['directory' => $directoryTmp]
+                );
             } else {
-                $content = json_encode($check);
+                $responseArray = array_merge($responseArray, [
+                    'errorSize' => 1,
+                    'maxSize' => $maxSize,
+                    'email' => "message non envoyé"
+                ]);
             }
         }
-        $response->setContent($content);
-        return $response;
 
-        // $data = "test ReceptionController";
-        // $headers = [];
-        // $status = 200;
-        // $response = new JsonResponse($data, $status, $headers);
-        // return $response;
+        $responseArray = array_merge($responseArray, $check);
+
+        return $response->setData($responseArray);
     }
 }
