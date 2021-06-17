@@ -1,4 +1,4 @@
-console.log('dans main.js')
+// console.log('dans main.js')
 
 const btnSend = document.querySelector('#btnSend')
 const dropZone = document.querySelector('#drop-zone')
@@ -68,12 +68,13 @@ async function envoiMessage(e) {
         method: 'POST',
         body: formData
     })
-    if (response.ok) {
-        const data = await response.text()
-        console.log('reponse : ', data)
-        myForm.reset()
-    } else {
+    if (!response.ok) {
         console.log(response)
+    } else {
+        const data = await response.json()
+        console.table('data : ', data)
+
+        // myForm.reset()
     }
 }
 
