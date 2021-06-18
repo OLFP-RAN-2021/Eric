@@ -15,7 +15,7 @@ class SenderMailTemplate
 
     function render()
     {
-        print_r($this->params);
+        // print_r($this->params);
         $message = $this?->params['message'];
         $directory = str_contains($_SERVER['SERVER_NAME'], 'localhost') ? 'http' : 'https';
         $directory .= ":\\" . $_SERVER['HTTP_HOST'] . "/upload/" . $this?->params['directory'];
