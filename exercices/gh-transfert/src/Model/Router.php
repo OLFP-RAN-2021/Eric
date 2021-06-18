@@ -37,6 +37,9 @@ class Router
 
         switch ($routeInfo[0]) {
             case Dispatcher::NOT_FOUND:
+                // dump($_SERVER);
+                // dump($uri);
+                // dump($routeInfo);
                 // ... 404 Not Found
                 echo "404 - not found";
                 break;
@@ -49,6 +52,7 @@ class Router
             case Dispatcher::FOUND:
                 $handler = $routeInfo[1];
                 $vars = $routeInfo[2];
+                // dump($routeInfo);
                 // ... call $handler with $vars
                 $class = $handler[0];
                 $action = $handler[1];
