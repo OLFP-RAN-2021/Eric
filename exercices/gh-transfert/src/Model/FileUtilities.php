@@ -2,11 +2,15 @@
 
 namespace App\Model;
 
+use ZipArchive;
+use RecursiveIteratorIterator;
+use RecursiveDirectoryIterator;
+
 class FileUtilities
 {
-    public function createDirectory(string $dir): string
+    public function createDirectory(string $path, string $dir): string
     {
-        $directoryTmp = '../upload/' . $dir;
+        $directoryTmp = $path . $dir;
         if (!is_dir($directoryTmp)) {
             mkdir($directoryTmp);
             return $dir;
@@ -45,7 +49,7 @@ class FileUtilities
         return $files;
     }
 
-    public function saveFiles($directoryTmp, $files)
+    public function saveFiles(string $directoryTmp, array $files)
     {
         foreach ($files as $file) {
 
@@ -54,5 +58,44 @@ class FileUtilities
                 // echo "fichier {$file['name']} enregistré.<br>";
             }
         }
+    }
+
+    function Zip($source, $destination)
+    {
+        if (!extension_loaded('zip') || !file_exists($source)) {
+            return false;
+        }
+
+        $zip = new ZipArchive();
+        if (!$zip->open($destination, ZIPARCHIVE::CREATE)) {
+            return false;
+        }
+
+        $source = str_replace('\\', '/', realpath($source));
+
+        if (is_dir($source) === true) {
+            $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source), RecursiveIteratorIterator::SELF_FIRST);
+
+            foreach ($files as $file) {
+                $file = str_replace('\\', '/', $file);
+
+                // Ignore "." and ".." folders
+                if (in_array(substr($file, strrpos($file, '/') + 1), array('.', '..'))) {
+                    continue;
+                }
+
+                $file = realpath($file);
+
+                if (is_dir($file) === true) {
+                    $zip->addEmptyDir(str_replace($source . '/', '', $file . '/'));
+                } else if (is_file($file) === true) {
+                    $zip->addFromString(str_replace($source . '/', '', $file), file_get_contents($file));
+                }
+            }
+        } else if (is_file($source) === true) {
+            $zip->addFromString(basename($source), file_get_contents($source));
+        }
+
+        return $zip->close();
     }
 }
